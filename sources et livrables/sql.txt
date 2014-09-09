@@ -1,0 +1,111 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+CREATE TABLE article(
+        id             int (11) Auto_increment  NOT NULL ,
+        nom            Varchar (45) ,
+        image          Varchar (250) ,
+        description    Varchar (45) ,
+        etat           Varchar (45) ,
+        date_edition   Date ,
+        editeur        Varchar (45) ,
+        auteur         Varchar (25) ,
+        seuil          Int ,
+        quantite_stock Int ,
+        prix           Float ,
+        id_categorie   Int ,
+        PRIMARY KEY (id )
+)ENGINE=InnoDB;
+
+
+CREATE TABLE utilisateur(
+        id               int (11) Auto_increment  NOT NULL ,
+        adresse_mail     Varchar (45) ,
+        mot_de_passe     Varchar (250) ,
+        authentifie      Bool ,      
+        id_authorisation Int ,
+        PRIMARY KEY (id )
+)ENGINE=InnoDB;
+
+
+CREATE TABLE categorie(
+        id  int (11) Auto_increment  NOT NULL ,
+        nom Varchar (25) ,
+        PRIMARY KEY (id )
+)ENGINE=InnoDB;
+
+
+CREATE TABLE adresse(
+        id      int (11) Auto_increment  NOT NULL ,
+        adresse Varchar (45) ,
+        cp      Varchar (45) ,
+        ville   Varchar (45) ,
+        PRIMARY KEY (id )
+)ENGINE=InnoDB;
+
+
+CREATE TABLE authorisation(
+        id     int (11) Auto_increment  NOT NULL ,
+        niveau Varchar (25) ,
+        PRIMARY KEY (id )
+)ENGINE=InnoDB;
+
+
+CREATE TABLE commande(
+        id                   int (11) Auto_increment  NOT NULL ,
+        statut               Varchar (25) ,
+        date_commande        Date ,
+        date_reception       Date ,
+        adrersse_livraison   Varchar (250) ,
+        cp_livraison         Int ,
+        ville_livraison      Varchar (250) ,
+        adrersse_facturation Varchar (250) ,
+        cp_facturation       Int ,
+        ville_facturation    Varchar (250) ,
+        id_utilisateur       Int ,
+        PRIMARY KEY (id )
+)ENGINE=InnoDB;
+
+
+CREATE TABLE mot_cle(
+        id  int (11) Auto_increment  NOT NULL ,
+        nom Varchar (25) ,
+        PRIMARY KEY (id )
+)ENGINE=InnoDB;
+
+
+CREATE TABLE profil(
+        id             int (11) Auto_increment  NOT NULL ,
+        nom            Varchar (45) ,
+        prenom         Varchar (45) ,
+        id_utilisateur Int ,
+        id_adresse     Int ,
+        PRIMARY KEY (id )
+)ENGINE=InnoDB;
+
+
+CREATE TABLE article_commande(
+        quantite    Float ,
+        id          Int NOT NULL ,
+        id_commande Int NOT NULL ,
+        PRIMARY KEY (id ,id_commande )
+)ENGINE=InnoDB;
+
+
+CREATE TABLE article_mot_cle(
+        id         Int NOT NULL ,
+        id_article Int NOT NULL ,
+        PRIMARY KEY (id ,id_article )
+)ENGINE=InnoDB;
+
+ALTER TABLE article ADD CONSTRAINT FK_article_id_categorie FOREIGN KEY (id_categorie) REFERENCES categorie(id);
+ALTER TABLE utilisateur ADD CONSTRAINT FK_utilisateur_id_authorisation FOREIGN KEY (id_authorisation) REFERENCES authorisation(id);
+ALTER TABLE commande ADD CONSTRAINT FK_commande_id_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id);
+ALTER TABLE profil ADD CONSTRAINT FK_profil_id_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id);
+ALTER TABLE profil ADD CONSTRAINT FK_profil_id_adresse FOREIGN KEY (id_adresse) REFERENCES adresse(id);
+ALTER TABLE article_commande ADD CONSTRAINT FK_article_commande_id FOREIGN KEY (id) REFERENCES article(id);
+ALTER TABLE article_commande ADD CONSTRAINT FK_article_commande_id_commande FOREIGN KEY (id_commande) REFERENCES commande(id);
+ALTER TABLE article_mot_cle ADD CONSTRAINT FK_article_mot_cle_id FOREIGN KEY (id) REFERENCES mot_cle(id);
+ALTER TABLE article_mot_cle ADD CONSTRAINT FK_article_mot_cle_id_article FOREIGN KEY (id_article) REFERENCES article(id);

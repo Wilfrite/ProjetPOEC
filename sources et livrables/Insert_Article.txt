@@ -1,0 +1,28 @@
+INSERT INTO `article`(`id`, `nom`, `image`, `description`, `etat`, `date_edition`, `editeur`, `auteur`, `seuil`, `quantite_stock`, `prix`, `id_categorie`) VALUES ('NULL','Racine Carree','public/img/racine_carree.jpg','2eme Album de Stromae','Nouveauté','20130507','Mercury','Stromae','5','11','12,06','1');
+
+
+INSERT INTO `article`(`id`, `nom`, `image`, `description`, `etat`, `date_edition`, `editeur`, `auteur`, `seuil`, `quantite_stock`, `prix`, `id_categorie`)  VALUES ('NULL','Random Access 
+Memories','public/img/RAM.jpg','Dernière Album de Daft Punk','Nouveauté','20130520','Columbia','Daft Punk','5','20','7','1');
+
+
+INSERT INTO `article`(`id`, `nom`, `image`, `description`, `etat`, `date_edition`, `editeur`, `auteur`, `seuil`, `quantite_stock`, `prix`, `id_categorie`)  VALUES 
+('NULL','Girl','public/img/girl.jpg','Dernière Album de Pharrell Williams','Nouveauté','20140303','Sony Music Catalogue','Pharrell Williams','5','5','16','1');
+
+INSERT INTO `article`(`id`, `nom`, `image`, `description`, `etat`, `date_edition`, `editeur`, `auteur`, `seuil`, `quantite_stock`, `prix`, `id_categorie`)  VALUES ('NULL','Mini World','public/img/indila.jpg','Dernière Album de Indila','Nouveauté','20140822','Import','Indila','5','2','10','1');
+
+
+INSERT INTO `article`(`id`, `nom`, `image`, `description`, `etat`, `date_edition`, `editeur`, `auteur`, `seuil`, `quantite_stock`, `prix`, `id_categorie`) VALUES('NULL','Saltimbanque','public/img/saltimbanque.jpg','Dernière Album de Keen\'V','Nouveauté','20140728','Capitol','Keen\'V','5','40','14','1');
+
+
+INSERT INTO `article`(`id`, `nom`, `image`, `description`, `etat`, `date_edition`, `editeur`, `auteur`, `seuil`, `quantite_stock`, `prix`, `id_categorie`)  VALUES ('NULL','The Amazing Spider-Man 2 : Le destin d\'un héros ','public/img/The_Amazing_Spider_Man_2_Le_destin_d_un_heros.jpg','Ce n\'est un secret pour personne que le combat le plus rude de Spider-Man est celui mèné contre lui-même en tentant de concilier la vie quotidienne de Peter Parker et les lourdes responsabilités de Spider-Man. Mais Peter Parker va se rendre compte qu\'il fait face à un conflit de bien plus grande ampleur.','Nouveauté','20140901','Sony Pictures Entertainment','Marc Webb','6','22','15,99','2');
+
+INSERT INTO `article`(`id`, `nom`, `image`, `description`, `etat`, `date_edition`, `editeur`, `auteur`, `seuil`, `quantite_stock`, `prix`, `id_categorie`)  VALUES ('NULL','Captain America 2 : Le soldat de l\'hiver','public/img/Captain_America_2_Le soldat_de_l_hiver.jpg','Après les événements cataclysmiques de New York, Steve Rogers aka Captain America vit tranquillement à Washington, D.C. et essaye de s\'adapter au monde moderne. Mais quand un collègue du S.H.I.E.L.D. est attaqué, Steve se retrouve impliqué dans un réseau dintrigues qui met le monde en danger.','Nouveauté','20140820','Studio : Marvel','Kevin Feige','5','20','7','2');
+
+INSERT INTO `article`(`id`, `nom`, `image`, `description`, `etat`, `date_edition`, `editeur`, `auteur`, `seuil`, `quantite_stock`, `prix`, `id_categorie`)  VALUES 
+('NULL','Divergente','public/img/divergente.jpg','Synopsis Tris vit dans un monde post-apocalyptique où la société est divisée en cinq clans (Audacieux, Érudits, Altruistes, Sincères, Fraternels). À 16 ans, elle doit choisir son appartenance pour le reste de sa vie. Cas rarissime, son test d\'aptitude n\'est pas concluant : elle est Divergente. Les Divergents sont des individus rares n\'appartenant à aucun clan et sont traqués par le gouvernement. Dissimulant son secret, Tris intègre l\'univers brutal des Audacieux dont l\'entraînement est basé sur la maîtrise de nos peurs les plus intimes.','Nouveauté','20140813','M6 Studio','Neil Burger','5','30','18','2');
+
+INSERT INTO `article`(`id`, `nom`, `image`, `description`, `etat`, `date_edition`, `editeur`, `auteur`, `seuil`, `quantite_stock`, `prix`, `id_categorie`)  VALUES 
+('NULL','Rio 2','public/img/Rio2.jpg','Blu a pris son envol et se sent désormais chez lui à Rio de Janeiro, aux côtés de Perla et de leurs trois enfants. Mais la vie de perroquet ne s\'apprend pas en ville et Perla insiste pour que la famille s\'installe dans la forêt amazonienne alors qu\'ils découvrent que d\'autres aras bleus y vivent.','Disponible','20140720','20th Century Fox','Carlos Saldanha','5','9','14,99','2');
+
+INSERT INTO `article`(`id`, `nom`, `image`, `description`, `etat`, `date_edition`, `editeur`, `auteur`, `seuil`, `quantite_stock`, `prix`, `id_categorie`)  VALUES ('NULL','Le Loup de Wall Street','public/img/loup_wall_street.jpg','Synopsis
+Le Loup de Wall Street raconte l\'histoire de Jordan Belfort, courtier en Bourse à New York à la fin des années 80. Du rêve américain à l\'avidité sans scrupule du monde des affaires, il va passer des portefeuilles d\'actions modestes et de la droiture morale aux spectaculaires introductions en Bourse et à une vie de corruption et d\'excès.','épuisé','20140820','Metropolitan Vidéo','Martin Scorsese','5','0','13','2');
