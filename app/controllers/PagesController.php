@@ -32,9 +32,10 @@ class PagesController {
     function index()
     {
         $href = $this->config['href'];
+        $title='Home - POECSTORE';
         $articles = $this->articleService->findAllArticles();
-        var_dump($articles);
-        //require ROOT .'/views/web/pages/home.php';
+        //var_dump($articles);
+        require ROOT .'/views/web/pages/home.php';
     }
 
     function error404(){
