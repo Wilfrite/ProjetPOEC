@@ -28,5 +28,17 @@ class ArticleService {
         return (isset($result) ? $result : null);
 
     }
-
+    public function findOneArticle($id_article) {
+        try {
+            // Sélection des données
+            $sql = "SELECT * FROM `article` WHERE `id`=?";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute(array($id_article));
+            $result = $stmt->fetch(PDO::FETCH_CLASS,"Article");
+            $stmt->closeCursor();
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+        return (isset($result) ? $result : null);
+    }
 }

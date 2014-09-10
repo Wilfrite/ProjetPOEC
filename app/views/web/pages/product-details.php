@@ -41,7 +41,7 @@
 
     </div>
     <div class="col-sm-7">
-        <div class="product-information"><!--/product-information-->
+        <div class="product-information"><!--product-information-->
             <img src="../../../../public/images/product-details/new.jpg" class="newarrival" alt="" />
             <h2>Anne Klein Sleeveless Colorblock Scuba</h2>
             <p>Web ID: 1089772</p>
