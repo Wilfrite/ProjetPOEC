@@ -47,6 +47,8 @@ class PagesController {
         }else {
             $title="PoecBlog - Article Detail";
             $articles = $this->articleService->findOneArticle($id);
+            $href = $this->config['href'];
+            $hrefImage = $this->config['href_image'];
             //$categories = $this->categoriesService->all();
             //$mot_cle = $this->tagsModel->all();
 
