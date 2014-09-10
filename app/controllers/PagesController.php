@@ -20,13 +20,14 @@ class PagesController {
 
 
     protected $articleService;
-    //protected $categoriesModel;
-    //protected $motCleModel;
+    protected $categoriesService;
+    protected $motCleService;
 
     public function __construct(array $config,$dbh) {
         $this->config = $config;
         $this->articleService = new ArticleService($dbh);
-
+        $this->categoriesService = new CategorieService($dbh);
+        $this->motCleService = new motCleService($dbh);
     }
 
     function index()
@@ -35,7 +36,8 @@ class PagesController {
         $hrefImage = $this->config['href_image'];
         $title='Home - POECSTORE';
         $articles = $this->articleService->findAllArticles();
-        //var_dump($articles);
+        $categories = $this->categoriesService->findAllCategories();
+        $mot_cles = $this->motCleService->findAllMotCles();
         require ROOT .'/views/web/pages/home.php';
     }
 
@@ -49,8 +51,8 @@ class PagesController {
             $articles = $this->articleService->findOneArticle($id);
             $href = $this->config['href'];
             $hrefImage = $this->config['href_image'];
-            //$categories = $this->categoriesService->all();
-            //$mot_cle = $this->tagsModel->all();
+            $categories = $this->categoriesService->findAllCategories();
+            $mot_cles = $this->motCleService->findAllMotCles();
 
             if (empty($articles)){
                 echo "Post Unavailable";
