@@ -7,7 +7,8 @@
 <div class="product-details"><!--product-details-->
     <div class="col-sm-5">
         <div class="view-product">
-            <img src="<?php echo $hrefImage ?><?php echo $article->getimage() ;?>" alt="<?php echo $article->getnom() ;?>" />
+
+            <img src="<?php echo $hrefImage ?><?php echo $articles->getImage() ;?>" alt="<?php echo $articles->getnom() ;?>" />
             <h3>ZOOM</h3>
         </div>
         <div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -46,11 +47,11 @@
     <div class="col-sm-7">
         <div class="product-information"><!--product-information-->
             <img src="../../../../public/images/product-details/new.jpg" class="newarrival" alt="" />
-            <h2><?php echo $article->getnom() ;?></h2>
+            <h2><?php echo $articles->getnom() ;?></h2>
             <p>Web ID: 1089772</p>
             <img src="../../../../public/images/product-details/rating.png" alt="" />
 								<span>
-									<span><?php echo $article->getprix() ;?>€</span>
+									<span><?php echo $articles->getprix() ;?>€</span>
 									<label>Quantity:</label>
 									<input type="text" value="3" />
 									<button type="button" class="btn btn-fefault cart">
@@ -59,7 +60,7 @@
                                     </button>
 								</span>
             <p><b>Availability:</b> In Stock</p>
-            <p><b>Condition:</b> <?php echo $article->getEtat() ;?></p>
+            <p><b>Condition:</b> <?php echo $articles->getEtat() ;?></p>
             <p><b>Brand:</b> E-SHOPPER</p>
             <a href=""><img src="../../../../public/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
         </div><!--/product-information-->
@@ -69,20 +70,21 @@
 <div class="category-tab shop-details-tab"><!--category-tab-->
     <div class="col-sm-12">
         <ul class="nav nav-tabs">
-            <li><a href="#description" data-toggle="tab">Description</a></li>
+            <li class="active"><a href="#description" data-toggle="tab">Description</a></li>
             <li><a href="#details" data-toggle="tab">Details</a></li>
             <li><a href="#tag" data-toggle="tab">Tag</a></li>
-            <li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+            <li ><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
         </ul>
     </div>
+    <div class="tab-content">
     <div class="tab-pane fade active in" id="description" >
         <div class="col-sm-12">
             <ul>
-                <li><a href=""><i class="fa fa-user"></i><?php echo $article->getAuteur() ;?></a></li>
-                <li><a href=""><i class="fa fa-user"></i><?php echo $article->getEditeur() ;?></a></li>
-                <li><a href=""><i class="fa fa-calendar-o"></i><?php echo $article->getDateEdition() ;?></a></li>
+                <li><a href=""><i class="fa fa-user"></i><?php echo $articles->getAuteur() ;?></a></li>
+                <li><a href=""><i class="fa fa-user"></i><?php echo $articles->getEditeur() ;?></a></li>
+                <li><a href=""><i class="fa fa-calendar-o"></i><?php echo $articles->getDateEdition() ;?></a></li>
             </ul>
-            <p><?php echo $article->getDescription() ;?></p>
+            <p><?php echo $articles->getDescription() ;?></p>
 
         </div>
     </div>
@@ -189,7 +191,7 @@
         </div>
     </div>
 
-    <div class="tab-pane fade active in" id="reviews" >
+    <div class="tab-pane fade " id="reviews" >
         <div class="col-sm-12">
             <ul>
                 <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
@@ -308,5 +310,8 @@
 </div><!--/recommended_items-->
 
 </div>
+</div>
+</div>
+</section>
 
 <?php require ROOT.'/views/web/layouts/footer.php'; ?>

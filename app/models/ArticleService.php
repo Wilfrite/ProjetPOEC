@@ -34,7 +34,7 @@ class ArticleService {
             $sql = "SELECT * FROM `article` WHERE `id`=?";
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute(array($id_article));
-            $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
+            $result = $stmt->fetchObject("Article");
             $stmt->closeCursor();
         } catch (PDOException $e) {
             die('Erreur : ' . $e->getMessage());
