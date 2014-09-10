@@ -32,6 +32,7 @@ class PagesController {
     function index()
     {
         $href = $this->config['href'];
+        $hrefImage = $this->config['href_image'];
         $title='Home - POECSTORE';
         $articles = $this->articleService->findAllArticles();
         //var_dump($articles);

@@ -6,6 +6,7 @@ require_once ROOT.'/autoload.php';
 require_once 'ArticleService.php';
 
 $config ['href'] = 'http://localhost/ProjetPOEC/public/';
+$config ['href_image'] = 'http://localhost/ProjetPOEC/public/images/article/';
 $config ['admin_email']='admin@gmail.com';
 
 $host = 'localhost';  // NOM DU SERVEUR SQL
