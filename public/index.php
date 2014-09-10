@@ -3,7 +3,7 @@ session_start();
 define('ROOT', dirname(__DIR__).DIRECTORY_SEPARATOR.'app');
 
 require_once ROOT.'/autoload.php';
-require_once 'ArticleService.php';
+require_once ROOT.'/models/ArticleService.php';
 
 $config ['href'] = 'http://localhost/ProjetPOEC/public/';
 $config ['href_image'] = 'http://localhost/ProjetPOEC/public/images/article/';
@@ -35,10 +35,10 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
 
         $pagesController->index();
         break;
-    /*case 'post' :
-        $pagesController->post($id_post);
+    case 'article' :
+        $pagesController->detailArticle($id_article);
         break;
-    case 'comment' :
+   /* case 'comment' :
         $pagesController->comment($id_post);
         break;
     case 'about' :

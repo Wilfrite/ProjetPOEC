@@ -5,7 +5,7 @@
  * Date: 09/09/14
  * Time: 16:06
  */
-require_once 'Article.php';
+require_once ROOT.'/models/Article.php';
 class ArticleService {
     protected $dbh;
 
@@ -34,7 +34,7 @@ class ArticleService {
             $sql = "SELECT * FROM `article` WHERE `id`=?";
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute(array($id_article));
-            $result = $stmt->fetch(PDO::FETCH_CLASS,"Article");
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
             $stmt->closeCursor();
         } catch (PDOException $e) {
             die('Erreur : ' . $e->getMessage());

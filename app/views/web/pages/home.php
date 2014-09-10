@@ -2,9 +2,7 @@
     <section>
     <div class="container">
     <div class="row">
-    <div class="col-sm-3">
         <?php require ROOT.'/views/web/layouts/sidebar.php'; ?>
-    </div>
     <div class="col-sm-9 padding-right">
     <div class="features_items"><!--features_items-->
         <h2 class="title text-center">Features Items</h2>
@@ -21,7 +19,7 @@
                         <div class="product-overlay">
                             <div class="overlay-content">
                                 <h2><?php echo $article->getprix() ;?>€</h2>
-                                <p><?php echo $article->getnom() ;?></p>
+                                <p><a href="<?php echo $this->url('pages','article',$article->getid());?>"><?php echo $article->getnom() ;?></a></p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
                         </div>

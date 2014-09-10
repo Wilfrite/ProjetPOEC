@@ -39,6 +39,25 @@ class PagesController {
         require ROOT .'/views/web/pages/home.php';
     }
 
+
+    function detailArticle($id)
+    {
+        if (empty($id)){
+            echo "Article Unavailable";
+        }else {
+            $title="PoecBlog - Article Detail";
+            $articles = $this->articleService->findOneArticle($id);
+            //$categories = $this->categoriesService->all();
+            //$mot_cle = $this->tagsModel->all();
+
+            if (empty($articles)){
+                echo "Post Unavailable";
+            }
+            require ROOT.'/views/web/pages/detail_article.php';
+        }
+    }
+
+
     function error404(){
         //$title="PoecBlog - error404";
        // require ROOT.'/views/web/pages/error404.php';
