@@ -3,12 +3,7 @@
     <div class="container">
     <div class="row">
     <div class="col-sm-3">
-        <div class="left-sidebar">
-            <h2>Category</h2>
-        </div>
-        <div class="brands_products"><!--brands_products-->
-            <h2>Mot Cle</h2>
-        </div>
+        <?php require ROOT.'/views/web/layouts/sidebar.php'; ?>
     </div>
     <div class="col-sm-9 padding-right">
     <div class="features_items"><!--features_items-->
@@ -18,15 +13,15 @@
                 <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
-                            <img src="../images/home/product1.jpg" alt="" />
-                            <h2>$56</h2>
+                            <img src="<?php echo $hrefImage ?><?php echo $article->getimage() ;?>" alt="ImageArticle" id="ImageArticle"/>
+                            <h2><?php echo $article->getprix() ;?>€</h2>
                             <p><?php echo $article->getnom() ;?></p>
                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                         </div>
                         <div class="product-overlay">
                             <div class="overlay-content">
-                                <h2>$56</h2>
-                                <p>Easy Polo Black Edition</p>
+                                <h2><?php echo $article->getprix() ;?>€</h2>
+                                <p><?php echo $article->getnom() ;?></p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
                         </div>
