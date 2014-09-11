@@ -61,6 +61,9 @@ class PagesController {
         }
     }
 
+    function login(){
+        require ROOT.'/views/web/pages/login.php';
+    }
 
     function error404(){
         //$title="PoecBlog - error404";

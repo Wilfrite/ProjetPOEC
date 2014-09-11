@@ -38,6 +38,9 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
     case 'article' :
         $pagesController->detailArticle($id_article);
         break;
+    case 'login' :
+        $pagesController->login();
+        break;
    /* case 'comment' :
         $pagesController->comment($id_post);
         break;
