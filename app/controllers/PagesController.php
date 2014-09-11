@@ -46,12 +46,15 @@ class PagesController extends Controller {
             $hrefImage = $this->config['href_image'];
             $categories = $this->categoriesService->findAllCategories();
             $mot_cles = $this->motCleService->findAllMotCles();
-
+            if (isset($_POST['submit_to_cart'])){
+                $_SESSION['panier']["$articles[$id]"] = $_POST['submit_to_cart'];
+            }
             if (empty($articles)){
-                echo "Post Unavailable";
+                require ROOT.'/views/web/pages/error404.php';
             }
             require ROOT.'/views/web/pages/detail_article.php';
         }
+
     }
 
     function login(){
@@ -119,9 +122,14 @@ class PagesController extends Controller {
     function panier(){
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
-        //   $tab_ids = array_keys($_SESSION['panier']);
-        $tab_ids = array(1,2,3);
-
+        // erreur a check
+        if(!isset($_SESSION['panier']))
+        {
+            $tab_ids  = array(0);
+        }
+        else{        $tab_ids = array_keys($_SESSION['panier']);
+        //$tab_ids = array(1,2,3);
+        }
         $panier_courant = $this->articleService->findAllArticlesById($tab_ids);
 
         require ROOT.'/views/web/pages/panier.php';
