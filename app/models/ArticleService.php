@@ -41,4 +41,19 @@ class ArticleService {
         }
         return (isset($result) ? $result : null);
     }
+    public function findAllArticlesById($tab_ids) { // $id == tableau d'id
+        try {
+            // mapping du tableau
+            $string_ids = implode(",",$tab_ids);
+            // Sélection des données
+            $sql = "SELECT * FROM `article` WHERE `id` IN ($string_ids)";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
+            $stmt->closeCursor();
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+        return (isset($result) ? $result : null);
+    }
 }

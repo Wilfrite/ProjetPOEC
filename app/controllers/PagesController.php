@@ -115,4 +115,16 @@ class PagesController extends Controller {
         $href = $this->config['href'];
        require ROOT.'/views/web/pages/error404.php';
     }
+
+    function panier(){
+
+        //   $tab_ids = array_keys($_SESSION['panier']);
+        $tab_ids = array(1,2,3);
+
+        $panier_courant = $this->articleService->findAllArticlesById($tab_ids);
+
+        require ROOT.'/views/web/pages/panier.php';
+    }
+
+
 }
