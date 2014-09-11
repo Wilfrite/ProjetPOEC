@@ -41,4 +41,26 @@ class ArticleService {
         }
         return (isset($result) ? $result : null);
     }
+
+
+    public function  findByCategory($id_category)
+    {
+        try {
+            // Sélection des données
+            $sql = "SELECT * FROM `article`
+            JOIN `categorie`
+            ON `article`.`id_categorie`= `categorie`.`id`
+            WHERE  `id_categorie`=?";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute(array($id_category));
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
+            $stmt->closeCursor();
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+        return (isset($result) ? $result : null);
+
+    }
+
+
 }

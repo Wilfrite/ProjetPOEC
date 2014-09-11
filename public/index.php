@@ -29,10 +29,10 @@ $pagesController = new PagesController($config,$dbh);
 
 $id_article= isset($_GET['p'])? $_GET['p'] : null;
 
+
 switch(isset($_GET['a'])? $_GET['a'] : 'index')
 {
     case 'index' :
-
         $pagesController->index();
         break;
     case 'article' :

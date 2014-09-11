@@ -31,6 +31,13 @@ class PagesController extends Controller {
         $articles = $this->articleService->findAllArticles();
         $categories = $this->categoriesService->findAllCategories();
         $mot_cles = $this->motCleService->findAllMotCles();
+        $id_category = 1;
+        if(isset($_GET["cat"]) ) {
+            $id_category = $_GET["cat"];
+        }
+
+        $ArticlesByCategory = $this->articleService->findByCategory($id_category);
+
         require ROOT .'/views/web/pages/home.php';
     }
 
