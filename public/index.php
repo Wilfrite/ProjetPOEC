@@ -53,9 +53,9 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
     case 'error404' :
         $pagesController->error404();
         break;
-//    case 'panier' :
-//    $pagesController->panier();
-//    break;
+    case 'panier' :
+    $pagesController->panier();
+    break;
     default:
         $pagesController->error404();
         break;
