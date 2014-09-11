@@ -24,7 +24,6 @@
                 <!--- foreach blabla -->
 
                 <?php
-                var_dump($panier_courant);
 
                 foreach($panier_courant as $item_panier) : ?>
                 <tr>
