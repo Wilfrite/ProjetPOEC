@@ -13,12 +13,14 @@ class PagesController extends Controller {
     protected $articleService;
     protected $categoriesService;
     protected $motCleService;
+    protected $utilisateurService;
 
     public function __construct(array $config,$dbh) {
         $this->config = $config;
         $this->articleService = new ArticleService($dbh);
         $this->categoriesService = new CategorieService($dbh);
         $this->motCleService = new motCleService($dbh);
+        $this->utilisateurService = new utilisateurService($dbh);
     }
 
     function index()
@@ -53,6 +55,33 @@ class PagesController extends Controller {
     }
 
     function login(){
+
+        if (isset($_POST['submit_sign_form'])){
+
+            $email= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+            $isEmailValid = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+            $password= filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+            $isPasswordValid = (strlen($password)>6) ? true : false;
+
+
+            if ($isEmailValid and $isPasswordValid){
+                $sign = $this->utilisateurService->insertNewUser($email, $password);
+                if($sign) {
+                    $this->setFlash("Succes inscription","success");
+                } else {
+                    $this->setFlash("Inscription Unavailable","warning");
+                }
+
+            } else {
+                $this->setFlash("Email must be a valid and Password must be a minimun of 6 characters","danger");
+            }
+
+        }
+
+
+
+
         require ROOT.'/views/web/pages/login.php';
     }
 
