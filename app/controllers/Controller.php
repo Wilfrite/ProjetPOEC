@@ -29,7 +29,17 @@ abstract class Controller {
             return $flash;
         }
         return null;
-
+    }
+    protected function addToCart($id_article, $quantite_article)
+    {
+        if (isset($_SESSION['panier'][$id_article]))
+        {
+            $_SESSION['panier'][$id_article] += $quantite_article;
+        }
+        else
+        {
+            $_SESSION['panier'][$id_article] = $quantite_article;
+        }
     }
 
 } 
