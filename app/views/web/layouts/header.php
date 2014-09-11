@@ -119,4 +119,7 @@
             </div>
         </div>
     </div><!--/header-bottom-->
+    <?php if ($flash = $this->flash()) { ?>
+        <div class="alert alert-<?php echo $flash['type']; ?> role="alert" ><?php echo $flash['message']; ?></div>
+    <?php } ?>
 </header><!--/header-->

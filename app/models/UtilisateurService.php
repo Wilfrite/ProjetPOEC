@@ -28,8 +28,10 @@ class UtilisateurService {
             ]);
             $stmt->closeCursor();
         } catch (PDOException $e) {
-            die('Erreur : ' . $e->getMessage());
+            return ('Erreur : ' . $e->getMessage());
+            //die('Erreur : ' . $e->getMessage());
         }
+
         return null;
 
     }
