@@ -67,10 +67,11 @@ class PagesController extends Controller {
 
             if ($isEmailValid and $isPasswordValid){
                 $sign = $this->utilisateurService->insertNewUser($email, $password);
-                if($sign) {
+                var_dump($sign);
+                if($sign == null) {
                     $this->setFlash("Succes inscription","success");
                 } else {
-                    $this->setFlash("Inscription Unavailable","warning");
+                    $this->setFlash("Inscription Unavailable -  ".$sign,"warning");
                 }
 
             } else {
