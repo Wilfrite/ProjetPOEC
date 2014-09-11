@@ -17,7 +17,7 @@ class ArticleService {
     {
         try {
             // Sélection des données
-            $sql = "SELECT * FROM `article` ";
+            $sql = "SELECT * FROM `article` LIMIT 6";
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
