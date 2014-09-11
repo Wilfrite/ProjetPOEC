@@ -28,7 +28,7 @@
                 foreach($panier_courant as $item_panier) : ?>
                 <tr>
                     <td class="cart_product">
-                        <a href="<?php echo $this->url('pages','article',$item_panier->getid());?>"><img src="<?php echo $hrefImage ?><?php echo $item_panier->getimage() ;?>" alt=""></a>
+                        <a href="<?php echo $this->url('pages','article',$item_panier->getid());?>"><img class="cart_img" src="<?php echo $hrefImage ?><?php echo $item_panier->getimage() ;?>" alt=""></a>
                     </td>
                     <td class="cart_description">
                         <h4><a href="<?php echo $this->url('pages','article',$item_panier->getid());?>"><?php echo $item_panier->getnom() ;?></a></h4>

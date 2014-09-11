@@ -46,7 +46,7 @@ class ArticleService {
             // mapping du tableau
             $string_ids = implode(",",$tab_ids);
             // Sélection des données
-            $sql = "SELECT * FROM `article` WHERE `id` IN ($string_ids)";
+            $sql = "SELECT * FROM `article` WHERE `id` IN ($string_ids) ORDER BY `nom`";
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
