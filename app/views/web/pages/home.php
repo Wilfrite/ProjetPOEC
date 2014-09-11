@@ -34,7 +34,10 @@
             </div>
         <?php endforeach ?>
     </div><!--features_items-->
-
+    <ul class="pager">
+        <li class="previous"><a href="#">&larr; Previous</a></li>
+        <li class="next"><a href="#">Next &rarr;</a></li>
+    </ul>
     <div class="category-tab"><!--category-tab-->
     <div class="col-sm-12">
         <ul class="nav nav-tabs">

@@ -49,10 +49,10 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
         break;
     case 'contact' :
         $pagesController->contact();
-        break;
+        break;*/
     case 'error404' :
         $pagesController->error404();
-        break;*/
+        break;
     default:
         $pagesController->error404();
         break;

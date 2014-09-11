@@ -66,7 +66,8 @@ class PagesController {
     }
 
     function error404(){
-        //$title="PoecBlog - error404";
-       // require ROOT.'/views/web/pages/error404.php';
+        $title="POECSTORE - error404";
+        $href = $this->config['href'];
+       require ROOT.'/views/web/pages/error404.php';
     }
 }
