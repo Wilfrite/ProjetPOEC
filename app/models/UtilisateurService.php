@@ -19,8 +19,8 @@ class UtilisateurService {
     {
         try {
             // Sélection des données
-            $sql = "INSERT INTO `utilisateur` (`id`, `adresse_mail`, `mot_de_passe`, `authentifie`,`id_authorisation`) VALUES
-            (null, :email, :password, 0, 1)";
+            $sql = "INSERT INTO `utilisateur` (`id`, `adresse_mail`, `mot_de_passe`, `id_authorisation`) VALUES
+            (null, :email, :password, 1)";
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute([
                     ':email' => $email,
