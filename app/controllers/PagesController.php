@@ -117,7 +117,8 @@ class PagesController extends Controller {
     }
 
     function panier(){
-
+        $href = $this->config['href'];
+        $hrefImage = $this->config['href_image'];
         //   $tab_ids = array_keys($_SESSION['panier']);
         $tab_ids = array(1,2,3);
 
