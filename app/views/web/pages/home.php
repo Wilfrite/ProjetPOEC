@@ -43,11 +43,11 @@
     <div class="tab-content">
     <?php foreach ($ArticlesByCategory as $article) : ?>
     <div class="tab-pane fade active in" id="<?php  echo $article->getnom(); ?>">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
-                        <img src="<?php echo $hrefImage ?><?php echo $article->getimage() ;?>" alt="" />
+                        <img src="<?php echo $hrefImage ?><?php echo $article->getimage() ;?>" id="ImageArticle" />
                         <h2><?php echo $article->getprix() ;?>€</h2>
                         <p><?php echo $article->getnom() ;?></p>
                         <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
