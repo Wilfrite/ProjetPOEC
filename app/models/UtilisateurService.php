@@ -36,4 +36,24 @@ class UtilisateurService {
 
     }
 
+    public function checkUser($email, $password)
+    {
+        try {
+            // Sélection des données
+            $sql = "SELECT * FROM utilisateur WHERE adresse_mail = :email AND mot_de_passe = :password ";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute([
+                    ':email' => $email,
+                    ':password' => $password
+                ]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $stmt->closeCursor();
+        } catch (PDOException $e) {
+            return ('Erreur : ' . $e->getMessage());
+            //die('Erreur : ' . $e->getMessage());
+        }
+
+        return (isset($result) ? $result : null);
+    }
+
 }

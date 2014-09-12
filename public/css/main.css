@@ -1629,6 +1629,10 @@ h2.title {
   display: block;
   margin: 15px -70px 10px 25px;
 }
+.cart_img {
+    max-height: 50%;
+    max-width: 50%;
+}
 
 .cart_quantity_button a {
   background:#F0F0E9;

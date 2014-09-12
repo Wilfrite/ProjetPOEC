@@ -5,7 +5,7 @@
         <div class="breadcrumbs">
             <ol class="breadcrumb">
                 <li><a href="#">Home</a></li>
-                <li class="active">Shopping Cart</li>
+                <li class="active">Panier</li>
             </ol>
         </div>
         <div class="table-responsive cart_info">
@@ -22,32 +22,37 @@
                 </thead>
                 <tbody>
                 <!--- foreach blabla -->
+
+                <?php
+
+                foreach($panier_courant as $item_panier) : ?>
                 <tr>
                     <td class="cart_product">
-                        <a href=""><img src="../images/cart/one.png" alt=""></a>
+                        <a href="<?php echo $this->url('pages','article',$item_panier->getid());?>"><img class="cart_img" src="<?php echo $hrefImage ?><?php echo $item_panier->getimage() ;?>" alt=""></a>
                     </td>
                     <td class="cart_description">
-                        <h4><a href="">Colorblock Scuba</a></h4>
+                        <h4><a href="<?php echo $this->url('pages','article',$item_panier->getid());?>"><?php echo $item_panier->getnom() ;?></a></h4>
                         <p>Web ID: 1089772</p>
                     </td>
                     <td class="cart_price">
-                        <p>$59</p>
+                        <p><?php echo $item_panier->getprix() ;?>€</p>
                     </td>
                     <td class="cart_quantity">
                         <div class="cart_quantity_button">
                             <a class="cart_quantity_up" href=""> + </a>
-                            <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+                            <input class="cart_quantity_input" type="text" name="quantity" value="2" autocomplete="off" size="2">
                             <a class="cart_quantity_down" href=""> - </a>
                         </div>
                     </td>
                     <td class="cart_total">
-                        <p class="cart_total_price">$59</p>
+                        <p class="cart_total_price"><?php echo $item_panier->getprix() *  2;?>€</p>
                     </td>
                     <td class="cart_delete">
                         <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
                     </td>
                 </tr>
                 <!-- end foreach -->
+    <?php endforeach ?>
 
 
                 </tbody>

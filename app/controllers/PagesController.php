@@ -74,7 +74,6 @@ class PagesController extends Controller {
 
             if ($isEmailValid and $isPasswordValid){
                 $sign = $this->utilisateurService->insertNewUser($email, $password);
-                var_dump($sign);
                 if($sign == null) {
                     $this->setFlash("Succes inscription","success");
                 } else {
@@ -87,7 +86,32 @@ class PagesController extends Controller {
 
         }
 
+        if (isset($_POST['submit_login_form'])){
 
+            $email= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+            $isEmailValid = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+            $password= filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+            $isPasswordValid = (strlen($password)>6) ? true : false;
+
+
+            if ($isEmailValid and $isPasswordValid){
+                $sign = $this->utilisateurService->checkUser($email, $password);
+                if($sign) {
+                    $_SESSION['email'] = $email;
+                    $_SESSION['connected'] = true;
+
+                    $this->setFlash("Succes inscription","success");
+                    header ('location: index.php');
+
+                } else {
+                    $this->setFlash("Connection fails. Check your email and password.  ".$sign,"warning");
+                }
+
+            } else {
+                $this->setFlash("Email must be a valid and Password must be a minimun of 6 characters","danger");
+            }
+        }
 
 
         require ROOT.'/views/web/pages/login.php';
@@ -98,4 +122,17 @@ class PagesController extends Controller {
         $href = $this->config['href'];
        require ROOT.'/views/web/pages/error404.php';
     }
+
+    function panier(){
+        $href = $this->config['href'];
+        $hrefImage = $this->config['href_image'];
+        //   $tab_ids = array_keys($_SESSION['panier']);
+        $tab_ids = array(1,2,3);
+
+        $panier_courant = $this->articleService->findAllArticlesById($tab_ids);
+
+        require ROOT.'/views/web/pages/panier.php';
+    }
+
+
 }
