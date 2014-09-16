@@ -21,8 +21,9 @@
             <div class="brands-name">
                 <ul class="nav nav-pills nav-stacked">
 
+
                     <?php foreach ($mot_cles as $mot_cle) : ?>
-                    <li><a href="<?php echo $mot_cle->getid(); ?>"><span class="pull-right" ?>nb_art_tag</span><?php echo $mot_cle->getnom(); ?></a></h4></li>
+                    <li><a href="<?php echo $mot_cle->getid(); ?>"><span class="pull-right" ?><?php echo $mot_cle->nb_art; ?></span><?php echo $mot_cle->getnom(); ?></a></h4></li>
               <?php endforeach ?>
                 </ul>
             </div>

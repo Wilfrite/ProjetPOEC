@@ -17,10 +17,15 @@ class MotCleService {
     {
         try {
             // Sélection des données
-            $sql = "SELECT * FROM `mot_cle` ";
+            $sql = "SELECT count( `mot_cle`.`id` ) as nb_art, `mot_cle`.`nom`
+            FROM `article_mot_cle`
+            JOIN `article` ON `article`.`id` = `article_mot_cle`.`id_article`
+            JOIN `mot_cle` ON `mot_cle`.`id` = `article_mot_cle`.`id`
+            GROUP BY `mot_cle`.`id`";
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS,"MotCle");
+            //var_dump($result);
             $stmt->closeCursor();
         } catch (PDOException $e) {
             die('Erreur : ' . $e->getMessage());
