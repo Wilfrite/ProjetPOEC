@@ -59,7 +59,7 @@
     </div>
     </div>
     </div><!--/category-tab-->
-    <?php require ROOT.'/views/web/layouts/recommented_items.php'; ?>
+<!--    --><?php //require ROOT.'/views/web/layouts/recommented_items.php'; ?><!-- -->
     </div>
     </div>
     </div>
