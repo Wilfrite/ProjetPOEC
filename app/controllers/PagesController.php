@@ -141,16 +141,20 @@ class PagesController extends Controller {
 
         require ROOT.'/views/web/pages/panier.php';
     }
-    protected function addToCart($id_article, $quantite_article)
+
+     function addToCart($id_article)
     {
-        if (isset($_SESSION['panier'][$id_article]))
+        if(!isset($_POST['quantite_article']))
         {
-            $_SESSION['panier'][$id_article] += $quantite_article;
+            $_SESSION['panier'][$id_article] += 1;
         }
-        else
-        {
-            $_SESSION['panier'][$id_article] = $quantite_article;
+        else{
+            $_SESSION['panier'][$id_article] = $_POST['quantite_article'];
         }
+        $url = $this->url('pages','index');
+        header("Location:$url");
+        exit();
+
     }
 
 

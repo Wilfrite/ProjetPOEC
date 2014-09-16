@@ -53,6 +53,9 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
     case 'error404' :
         $pagesController->error404();
         break;
+    case 'addToCart' :
+        $pagesController->addToCart($id_article);
+        break;
     case 'panier' :
     $pagesController->panier();
     break;

@@ -20,7 +20,7 @@
                             <div class="overlay-content">
                                 <h2><?php echo $article->getprix() ;?>€</h2>
                                 <p><a href="<?php echo $this->url('pages','article',$article->getid());?>"><?php echo $article->getnom() ;?></a></p>
-                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                <a href="<?php echo $this->url('pages','addToCart',$article->getid());?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
                         </div>
                     </div>
