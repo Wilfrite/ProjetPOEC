@@ -52,12 +52,14 @@
             <img src="../../../../public/images/product-details/rating.png" alt="" />
 								<span>
 									<span><?php echo $articles->getprix() ;?>€</span>
-									<label>Quantity:</label>
-									<input type="text" value="0" />
-									<button type="button" class="btn btn-fefault cart" name="submit_to_cart">
+									<form>
+                                    <label>Quantity:</label>
+                                    <input type="text" value="0" />
+									<button type="button" class="btn btn-default cart" name="submit_to_cart">
                                         <i class="fa fa-shopping-cart"></i>
                                         Add to cart
                                     </button>
+                                    </form>
 								</span>
             <p><b>Availability:</b> In Stock</p>
             <p><b>Condition:</b> <?php echo $articles->getEtat() ;?></p>
