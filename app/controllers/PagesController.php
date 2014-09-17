@@ -144,13 +144,6 @@ class PagesController extends Controller {
 
      function addToCart($id_article)
     {
-
-        if(isset($_POST['quantite_modifie_article']))
-        {
-            $_SESSION['panier'][$id_article] = $_POST['quantite_modifie_article'];
-        }
-        else{
-
         if(!isset($_POST['quantite_article']))
         {
             $_SESSION['panier'][$id_article] += 1;
@@ -158,22 +151,11 @@ class PagesController extends Controller {
         else{
             $_SESSION['panier'][$id_article] += $_POST['quantite_article'];
         }
-    }
         $url = $this->url('pages','panier');
         header("Location:$url");
         exit();
 
     }
-    function removeCart($id_article)
-    {
 
-            unset($_SESSION['panier'][$id_article] );
-
-
-        $url = $this->url('pages','panier');
-        header("Location:$url");
-        exit();
-
-    }
 
 }
