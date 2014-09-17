@@ -143,6 +143,7 @@ class PagesController extends Controller {
     function panier(){
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
+
         // erreur a check
         if(empty($_SESSION['panier']))
         {
