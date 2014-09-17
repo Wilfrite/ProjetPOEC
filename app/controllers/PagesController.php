@@ -141,6 +141,11 @@ class PagesController extends Controller {
         exit();
     }
 
+    function profil()
+    {
+        require ROOT.'/views/web/pages/profil.php';
+    }
+
     function error404(){
         $href = $this->config['href'];
         $title="POECSTORE - error404";
@@ -151,14 +156,16 @@ class PagesController extends Controller {
     function panier(){
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
+        $tva =.2;
         // erreur a check
-        if(!isset($_SESSION['panier']))
+        if(empty($_SESSION['panier']))
         {
             $tab_ids  = array(0);
-        }
-        else{        $tab_ids = array_keys($_SESSION['panier']);
-        //$tab_ids = array(1,2,3);
-        }
+                    }
+        else{
+            $tab_ids = array_keys($_SESSION['panier']);
+
+            }
         $panier_courant = $this->articleService->findAllArticlesById($tab_ids);
 
         require ROOT.'/views/web/pages/panier.php';
@@ -189,7 +196,7 @@ class PagesController extends Controller {
     function removeCart($id_article)
     {
 
-            unset($_SESSION['panier'][$id_article] );
+            unset($_SESSION['panier'][$id_article] )  ;
 
 
         $url = $this->url('pages','panier');
