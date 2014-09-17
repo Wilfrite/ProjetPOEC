@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="index.php"><img src="../images/home/logo.png" alt="" /></a>
+                        <a href="index.php"><img src="<?php echo $href ?>images/logo.jpg" alt="logo"  name="logo" id="logo"/></a>
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -96,9 +96,9 @@
                             <li><a href="index.php" class="active">Home</a></li>
                             <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a href="index.php">Articles</a></li>
+                                    <li><a href="index.php">Nouveauté</a></li>
                                     <li><a href="<?php echo $this->url('pages','panier');?>">Panier</a></li>
-                                    <li><a href="<?php echo $this->url('pages','login');?>">Login</a></li>
+                                    <li><a href="<?php echo $this->url('pages','login');?>">Connexion</a></li>
                                 </ul>
                             </li>
                             <li><a href="<?php echo $this->url('pages','contact');?>">Contact</a></li>

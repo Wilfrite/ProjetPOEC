@@ -17,8 +17,10 @@ class ArticleService {
     {
         try {
             // Sélection des données
-            $sql = "SELECT * FROM `article`
-            ORDER BY `article`.id DESC  LIMIT 3";
+            $sql = "SELECT *
+            FROM `article`
+            WHERE `article`.etat = 'Nouveauté'
+            ORDER BY `article`.id DESC";
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
@@ -78,6 +80,28 @@ class ArticleService {
         }
         return (isset($result) ? $result : null);
     }
+
+
+    public function  findByMotCle($id_mot_cle)
+    {
+        try {
+            // Sélection des données
+            $sql = "SELECT `article`.`id` , `article`.`nom` , `image` , `description` , `etat` , `date_edition` , `editeur` , `auteur` , `seuil` , `quantite_stock` , `prix` , `id_categorie` , `mot_cle`.`id` AS id_mot_cle, `mot_cle`.`nom` AS nom_mot_cle
+            FROM `article_mot_cle`
+            JOIN `article` ON `article`.`id` = `article_mot_cle`.`id_article`
+            JOIN `mot_cle` ON `mot_cle`.`id` = `article_mot_cle`.`id`
+            WHERE `mot_cle`.`id` =?";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute(array($id_mot_cle));
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
+            $stmt->closeCursor();
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+
+        return (isset($result) ? $result : null);
+    }
+
 }
 
 

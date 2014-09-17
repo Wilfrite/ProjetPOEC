@@ -34,11 +34,18 @@ class PagesController extends Controller {
         $id_category = 0;
         if(isset($_GET["cat"]) ) {
             $id_category = $_GET["cat"];
-            $ArticlesByCategory = $this->articleService->findByCategory($id_category);
+            $ArticlesByMehtod = $this->articleService->findByCategory($id_category);
         }
         else {
-            $ArticlesByCategory = $this->articleService->findAllArticles();
+            $ArticlesByMehtod = $this->articleService->findAllArticles();
         }
+
+        $id_mot_cle = 0;
+        if(isset($_GET["mot"]) ) {
+            $id_mot_cle = $_GET["mot"];
+            $ArticlesByMehtod = $this->articleService->findByMotCle($id_mot_cle);
+        }
+
 
         require ROOT .'/views/web/pages/home.php';
     }
@@ -67,11 +74,11 @@ class PagesController extends Controller {
     }
 
     function login(){
-
+        $href = $this->config['href'];
         if (isset($_POST['submit_sign_form'])){
 
             $email= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-            $isEmailValid = filter_var($email, FILTER_SANITIZE_EMAIL);
+            $isEmailValid = filter_var($email, FILTER_VALIDATE_EMAIL);
 
             $password= filter_var($_POST['password'], FILTER_SANITIZE_STRING);
             $isPasswordValid = (strlen($password)>6) ? true : false;
@@ -135,6 +142,7 @@ class PagesController extends Controller {
     }
 
     function error404(){
+        $href = $this->config['href'];
         $title="POECSTORE - error404";
         $href = $this->config['href'];
        require ROOT.'/views/web/pages/error404.php';
