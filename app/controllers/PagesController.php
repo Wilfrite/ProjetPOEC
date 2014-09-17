@@ -149,9 +149,9 @@ class PagesController extends Controller {
             $_SESSION['panier'][$id_article] += 1;
         }
         else{
-            $_SESSION['panier'][$id_article] = $_POST['quantite_article'];
+            $_SESSION['panier'][$id_article] += $_POST['quantite_article'];
         }
-        $url = $this->url('pages','index');
+        $url = $this->url('pages','panier');
         header("Location:$url");
         exit();
 

@@ -51,11 +51,13 @@
             <p>Web ID: 1089772</p>
             <img src="../../../../public/images/product-details/rating.png" alt="" />
 								<span>
+
+                                    <form method="post"  name="addtocartquantity" action="<?php echo $this->url('pages','addToCart',$articles->getid());?>">
 									<span><?php echo $articles->getprix() ;?>€</span>
-									<form>
+
                                     <label>Quantity:</label>
-                                    <input type="text" value="0" />
-									<button type="button" class="btn btn-default cart" name="submit_to_cart">
+                                    <input type="text" value="0" name="quantite_article"/>
+									<button type="submit" class="btn btn-default cart" name="submit_to_cart" >
                                         <i class="fa fa-shopping-cart"></i>
                                         Add to cart
                                     </button>
