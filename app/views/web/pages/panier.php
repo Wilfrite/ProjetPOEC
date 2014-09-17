@@ -40,17 +40,15 @@
                     <td class="cart_quantity">
                         <div class="cart_quantity_button">
 
-                            <form method="post"  name="addtocartquantity" action="<?php echo $this->url('pages','addToCart',$item_panier->getid());?>">
-                            <input class="cart_quantity_input" type="text" name="quantite_modifie_article" value="<?php echo $_SESSION['panier'][$item_panier->getid()] ;?>"  size="2">
-                                <button type="submit" class="btn btn-default cart" name="submit_to_cart" >Modifier
-                                </button></form>
-                         </div>
+                            <input class="cart_quantity_input" type="text" name="quantity" value="<?php echo $_SESSION['panier'][$item_panier->getid()] ;?>" autocomplete="off" size="2">
+
+                        </div>
                     </td>
                     <td class="cart_total">
                         <p class="cart_total_price"><?php echo $item_panier->getprix() *  $_SESSION['panier'][$item_panier->getid()];?>€</p>
                     </td>
                     <td class="cart_delete">
-                        <a class="cart_quantity_delete" href="<?php echo $this->url('pages','removeCart',$item_panier->getid());?>"><i class="fa fa-times"></i></a>
+                        <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
                     </td>
                 </tr>
                 <!-- end foreach -->
