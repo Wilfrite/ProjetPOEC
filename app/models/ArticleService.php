@@ -17,7 +17,8 @@ class ArticleService {
     {
         try {
             // Sélection des données
-            $sql = "SELECT * FROM `article` LIMIT 6";
+            $sql = "SELECT * FROM `article`
+            ORDER BY `article`.id DESC  LIMIT 3";
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
@@ -46,9 +47,9 @@ class ArticleService {
     {
         try {
             // Sélection des données
-            $sql = "SELECT * FROM `article`
-            JOIN `categorie`
-            ON `article`.`id_categorie`= `categorie`.`id`
+            $sql = "SELECT `article`.`id`, `article`.`nom` , `image` , `description` , `etat` , `date_edition` , `editeur` , `auteur` , `seuil` , `quantite_stock` , `prix` , `id_categorie` , `categorie`.`nom` as nom_category
+            FROM `article`
+            JOIN `categorie` ON `article`.`id_categorie` = `categorie`.`id`
             WHERE  `id_categorie`=?";
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute(array($id_category));

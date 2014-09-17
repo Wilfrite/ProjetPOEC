@@ -31,12 +31,14 @@ class PagesController extends Controller {
         $articles = $this->articleService->findAllArticles();
         $categories = $this->categoriesService->findAllCategories();
         $mot_cles = $this->motCleService->findAllMotCles();
-        $id_category = 1;
+        $id_category = 0;
         if(isset($_GET["cat"]) ) {
             $id_category = $_GET["cat"];
+            $ArticlesByCategory = $this->articleService->findByCategory($id_category);
         }
-
-        $ArticlesByCategory = $this->articleService->findByCategory($id_category);
+        else {
+            $ArticlesByCategory = $this->articleService->findAllArticles();
+        }
 
         require ROOT .'/views/web/pages/home.php';
     }
