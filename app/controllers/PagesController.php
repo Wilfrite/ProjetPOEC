@@ -120,6 +120,18 @@ class PagesController extends Controller {
         require ROOT.'/views/web/pages/login.php';
     }
 
+    function deconnexion()
+    {
+        if(isset($_SESSION['email']))
+        {
+            $_SESSION = array();
+            session_destroy();
+        }
+
+        header("Location: index.php");
+        exit();
+    }
+
     function error404(){
         $title="POECSTORE - error404";
         $href = $this->config['href'];
@@ -142,7 +154,7 @@ class PagesController extends Controller {
         require ROOT.'/views/web/pages/panier.php';
     }
 
-     function addToCart($id_article)
+    function addToCart($id_article)
     {
         if(!isset($_POST['quantite_article']))
         {
