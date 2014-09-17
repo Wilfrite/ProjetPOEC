@@ -41,6 +41,9 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
     case 'login' :
         $pagesController->login();
         break;
+    case 'deconnexion' :
+        $pagesController->deconnexion();
+        break;
    /* case 'comment' :
         $pagesController->comment($id_post);
         break;
@@ -55,6 +58,9 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
         break;
     case 'addToCart' :
         $pagesController->addToCart($id_article);
+        break;
+    case 'removeCart' :
+        $pagesController->removeCart($id_article);
         break;
     case 'panier' :
     $pagesController->panier();
