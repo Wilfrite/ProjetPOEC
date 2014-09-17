@@ -7,7 +7,7 @@
  */
 
 class Article {
-        protected  $id;
+        protected $id;
         protected $nom;
         protected $image;
         protected $description;
@@ -19,6 +19,7 @@ class Article {
         protected $quantite_stock;
         protected $prix;
         protected $id_categorie;
+
 
     /**
      * @param mixed $auteur
@@ -178,6 +179,17 @@ class Article {
     public function getPrix()
     {
         return $this->prix;
+    }
+
+    /**
+     * Attribution d'une tva
+     * todo : gestion de tva via bdd
+     * @return mixed
+     */
+    public function getPrixTVA()
+    {
+        $tva = .2;
+        return $this->prix * (1+$tva);
     }
 
     /**

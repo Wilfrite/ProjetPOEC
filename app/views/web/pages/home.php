@@ -12,13 +12,13 @@
                     <div class="single-products">
                         <div class="productinfo text-center">
                             <img src="<?php echo $hrefImage ?><?php echo $article->getimage() ;?>" alt="ImageArticle" id="ImageArticle"/>
-                            <h2><?php echo $article->getprix() ;?>€</h2>
+                            <h2><?php echo $article->getprixTVA() ;?>€</h2>
                             <p><?php echo $article->getnom() ;?></p>
                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                         </div>
                         <div class="product-overlay">
                             <div class="overlay-content">
-                                <h2><?php echo $article->getprix() ;?>€</h2>
+                                <h2><?php echo $article->getprixTVA() ;?>€</h2>
                                 <p><a href="<?php echo $this->url('pages','article',$article->getid());?>"><?php echo $article->getnom() ;?></a></p>
                                 <a href="<?php echo $this->url('pages','addToCart',$article->getid());?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>

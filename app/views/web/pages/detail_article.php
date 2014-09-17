@@ -53,7 +53,7 @@
 								<span>
 
                                     <form method="post"  name="addtocartquantity" action="<?php echo $this->url('pages','addToCart',$articles->getid());?>">
-									<span><?php echo $articles->getprix() ;?>€</span>
+									<span><?php echo $articles->getprixTVA() ;?>€</span>
 
                                     <label>Quantity:</label>
                                     <input type="text" value="0" name="quantite_article"/>
