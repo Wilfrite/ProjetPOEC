@@ -44,6 +44,9 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
     case 'deconnexion' :
         $pagesController->deconnexion();
         break;
+    case 'profil' :
+        $pagesController->profil();
+        break;
    /* case 'comment' :
         $pagesController->comment($id_post);
         break;
