@@ -194,7 +194,7 @@ class PagesController extends Controller {
 
             }
         $panier_courant = $this->articleService->findAllArticlesById($tab_ids);
-        if (isset($valide))
+        if ($valide== "valide")
         {
            if ( isset($_SESSION['email']) )
            {

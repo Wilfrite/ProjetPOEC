@@ -46,27 +46,27 @@
     </div>
     <div class="col-sm-7">
         <div class="product-information"><!--product-information-->
-            <img src="../../../../public/images/product-details/new.jpg" class="newarrival" alt="" />
+            <img src="<?php echo ($articles->getEtat() == "Nouveauté") ? $href.'images/product-details/new.jpg' : '' ;?>"  alt="" class="newarrival" />
             <h2><?php echo $articles->getnom() ;?></h2>
-            <p>Web ID: 1089772</p>
-            <img src="../../../../public/images/product-details/rating.png" alt="" />
+            <p></p>
+
 								<span>
 
                                     <form method="post"  name="addtocartquantity" action="<?php echo $this->url('pages','addToCart',$articles->getid());?>">
 									<span><?php echo $articles->getprixTVA() ;?>€</span>
 
-                                    <label>Quantity:</label>
+                                    <label>Quantité:</label>
                                     <input type="text" value="0" name="quantite_article"/>
 									<button type="submit" class="btn btn-default cart" name="submit_to_cart" >
                                         <i class="fa fa-shopping-cart"></i>
-                                        Add to cart
+                                        Ajouter au panier
                                     </button>
                                     </form>
 								</span>
-            <p><b>Availability:</b> In Stock</p>
-            <p><b>Condition:</b> <?php echo $articles->getEtat() ;?></p>
-            <p><b>Brand:</b> E-SHOPPER</p>
-            <a href=""><img src="../../../../public/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+
+            <p><b>Condition : </b> <?php echo $articles->getEtat() ;?></p>
+            <p><b>En stock : </b><?php echo $articles->getQuantiteStock() ;?></p>
+            <a href=""><img src="<?php echo $href.'images/product-details/share.png' ;?>" class="share img-responsive"  alt="" /></a>
         </div><!--/product-information-->
     </div>
 </div><!--/product-details-->
@@ -75,8 +75,6 @@
     <div class="col-sm-12">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#description" data-toggle="tab">Description</a></li>
-            <li><a href="#details" data-toggle="tab">Details</a></li>
-            <li><a href="#tag" data-toggle="tab">Tag</a></li>
             <li ><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
         </ul>
     </div>
@@ -90,108 +88,6 @@
             </ul>
             <p><?php echo $articles->getDescription() ;?></p>
 
-        </div>
-    </div>
-
-    <div class="tab-pane fade" id="details" >
-        <div class="col-sm-3">
-            <div class="product-image-wrapper">
-                <div class="single-products">
-                    <div class="productinfo text-center">
-                        <img src="../../../../public/images/home/gallery1.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="product-image-wrapper">
-                <div class="single-products">
-                    <div class="productinfo text-center">
-                        <img src="../../../../public/images/home/gallery3.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="product-image-wrapper">
-                <div class="single-products">
-                    <div class="productinfo text-center">
-                        <img src="../../../../public/images/home/gallery2.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="product-image-wrapper">
-                <div class="single-products">
-                    <div class="productinfo text-center">
-                        <img src="../../../../public/images/home/gallery4.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab-pane fade" id="tag" >
-        <div class="col-sm-3">
-            <div class="product-image-wrapper">
-                <div class="single-products">
-                    <div class="productinfo text-center">
-                        <img src="../../../../public/images/home/gallery1.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="product-image-wrapper">
-                <div class="single-products">
-                    <div class="productinfo text-center">
-                        <img src="../../../../public/images/home/gallery2.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="product-image-wrapper">
-                <div class="single-products">
-                    <div class="productinfo text-center">
-                        <img src="../../../../public/images/home/gallery3.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="product-image-wrapper">
-                <div class="single-products">
-                    <div class="productinfo text-center">
-                        <img src="../../../../public/images/home/gallery4.jpg" alt="" />
-                        <h2>$56</h2>
-                        <p>Easy Polo Black Edition</p>
-                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -221,8 +117,6 @@
 
 </div>
 </div><!--/category-tab-->
-
-<?php require ROOT.'/views/web/layouts/recommented_items.php'; ?>
 
 </div>
 </div>
