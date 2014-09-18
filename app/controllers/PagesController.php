@@ -150,13 +150,13 @@ class PagesController extends Controller {
 
     function profil()
     {
+        $href = $this->config['href'];
         require ROOT.'/views/web/pages/profil.php';
     }
 
     function error404(){
         $href = $this->config['href'];
         $title="POECSTORE - error404";
-        $href = $this->config['href'];
        require ROOT.'/views/web/pages/error404.php';
     }
 
@@ -183,18 +183,29 @@ class PagesController extends Controller {
 
         if(isset($_POST['quantite_modifie_article']))
         {
-            $_SESSION['panier'][$id_article] = $_POST['quantite_modifie_article'];
+            if ($_POST['quantite_modifie_article']>0)
+            $_SESSION['panier'][$id_article] = intval($_POST['quantite_modifie_article']);
         }
         else{
 
-        if(!isset($_POST['quantite_article']))
-        {
-            $_SESSION['panier'][$id_article] += 1;
+            if(!isset($_POST['quantite_article']))
+            {
+                $_SESSION['panier'][$id_article] += 1;
+            }
+            else
+            {
+                if ($_POST['quantite_article']>0)
+                {
+                $_SESSION['panier'][$id_article] += intval($_POST['quantite_article']);
+                }
+                else
+                {
+                    $url = $this->url('pages','article',"$id_article");
+                    header("Location:$url");
+                    exit();
+                }
+            }
         }
-        else{
-            $_SESSION['panier'][$id_article] += $_POST['quantite_article'];
-        }
-    }
         $url = $this->url('pages','panier');
         header("Location:$url");
         exit();
