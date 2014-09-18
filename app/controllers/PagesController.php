@@ -176,7 +176,14 @@ class PagesController extends Controller {
         $panier_courant = $this->articleService->findAllArticlesById($tab_ids);
         if (isset($valide))
         {
+           if ( isset($_SESSION['email']) )
+           {
             require ROOT.'/views/web/pages/validation.php';
+           }
+            else
+            {
+                require ROOT.'/views/web/pages/login.php';
+            }
         } else {
               require ROOT.'/views/web/pages/panier.php';
         }

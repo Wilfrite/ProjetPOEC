@@ -69,7 +69,7 @@
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
                             <li><a href="<?php echo isset($_SESSION['email']) ? $this->url('pages','profil') : $this->url('pages','login') ;?>"><i class="fa fa-user"></i><?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ' Account' ;?></a></li>
-                            <li><a href="<?php echo $this->url('pages','panier');?>"><i class="fa fa-shopping-cart"></i> Panier</a></li>
+                            <li><a href="<?php echo $this->url('pages','panier');?>"><i class="fa fa-shopping-cart"></i> Panier  <?php  echo  (isset($_SESSION['panier']))  ? "(".array_sum($_SESSION['panier']).")" : "" ;?></a></li>
                             <li><a href="<?php echo isset($_SESSION['email']) ? $this->url('pages','deconnexion') : $this->url('pages','login') ;?>"><i class="fa fa-lock"></i><?php echo isset($_SESSION['email']) ? ' Déconnexion' : ' Connexion' ;?></a></li>
                         </ul>
                     </div>
