@@ -11,7 +11,6 @@ class Utilisateur {
         protected $id;
         protected $adresse_mail;
         protected $mot_de_passe;
-        protected $authentifie;
         protected $id_authorisation;
 
     /**
@@ -28,22 +27,6 @@ class Utilisateur {
     public function getAdresseMail()
     {
         return $this->adresse_mail;
-    }
-
-    /**
-     * @param mixed $authentifie
-     */
-    public function setAuthentifie($authentifie)
-    {
-        $this->authentifie = $authentifie;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAuthentifie()
-    {
-        return $this->authentifie;
     }
 
     /**

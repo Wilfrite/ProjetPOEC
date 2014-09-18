@@ -14,6 +14,7 @@ class PagesController extends Controller {
     protected $categoriesService;
     protected $motCleService;
     protected $utilisateurService;
+    protected $profilService;
 
     public function __construct(array $config,$dbh) {
         $this->config = $config;
@@ -21,6 +22,7 @@ class PagesController extends Controller {
         $this->categoriesService = new CategorieService($dbh);
         $this->motCleService = new motCleService($dbh);
         $this->utilisateurService = new utilisateurService($dbh);
+        $this->profilService = new profilService($dbh);
     }
 
     function index()
@@ -81,15 +83,20 @@ class PagesController extends Controller {
             $isEmailValid = filter_var($email, FILTER_VALIDATE_EMAIL);
 
             $password= filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-            $isPasswordValid = (strlen($password)>6) ? true : false;
+            $isPasswordValid = (strlen($password)>5) ? true : false;
 
 
-            if ($isEmailValid and $isPasswordValid){
-                $sign = $this->utilisateurService->insertNewUser($email, $password);
-                if($sign == null) {
+            if ($isEmailValid and $isPasswordValid)
+            {
+                $idNewUser = $this->utilisateurService->insertNewUser($email, $password);
+                //$this->profilService->insertNewProfil->insertNewProfil($idNewUser);
+
+                if($idNewUser > 0)
+                {
+                    $result=$this->profilService->insertNewProfil($idNewUser);
                     $this->setFlash("Succes inscription","success");
                 } else {
-                    $this->setFlash("Inscription Unavailable -  ".$sign,"warning");
+                    $this->setFlash("Inscription Unavailable -  ".$idNewUser,"warning");
                 }
 
             } else {
