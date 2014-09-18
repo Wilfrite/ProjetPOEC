@@ -27,12 +27,13 @@ class UtilisateurService {
                     ':password' => $password
             ]);
             $stmt->closeCursor();
+            $result=(int)($this->dbh->lastInsertId());
         } catch (PDOException $e) {
             return ('Erreur : ' . $e->getMessage());
             //die('Erreur : ' . $e->getMessage());
         }
 
-        return null;
+        return $result;
 
     }
 
