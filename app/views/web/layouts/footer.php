@@ -7,36 +7,36 @@
                     <div class="single-widget">
                         <h2>Service</h2>
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Contactez nous</a></li>
                             <li><a href="#">FAQ</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="single-widget">
-                        <h2>Policies</h2>
+                        <h2>Conditions</h2>
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Terms of Use</a></li>
-                            <li><a href="#">Privecy Policy</a></li>
+                            <li><a href="#">Conditions d'utilisation</a></li>
+                            <li><a href="#">Politique de confidentialité</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="single-widget">
-                        <h2>About Shopper</h2>
+                        <h2>A propos</h2>
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Store Location</a></li>
+                            <li><a href="#">Le magasin</a></li>
                             <li><a href="#">Copyright</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-3 col-sm-offset-1">
                     <div class="single-widget">
-                        <h2>About Shopper</h2>
+                        <h2>Information</h2>
                         <form action="#" class="searchform">
-                            <input type="text" placeholder="Your email address" />
+                            <input type="text" placeholder="Votre adresse email" />
                             <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                            <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                            <p>Recevez les recentes informations <br /> et restez informé des dernieres nouveautés.</p>
                         </form>
                     </div>
                 </div>
@@ -48,8 +48,8 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
-                <p class="pull-left">Copyright Â© 2013 POECSTORE Inc. All rights reserved.</p>
-                <p class="pull-right">Designed by <span>POEC</span></p>
+                <p class="pull-left">Copyright : 2013 POECSTORE Inc. Aucun droit reservé.</p>
+                <p class="pull-right">Designed by <span>(on a pas retenu le nom du créateur du template, mais c'est l'équipe du POEC qui a ratttrapé le coup)</span></p>
             </div>
         </div>
     </div>
