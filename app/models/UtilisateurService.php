@@ -46,7 +46,7 @@ class UtilisateurService {
                     ':email' => $email,
                     ':password' => $password
                 ]);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, "Utilisateur");
             $stmt->closeCursor();
         } catch (PDOException $e) {
             return ('Erreur : ' . $e->getMessage());
