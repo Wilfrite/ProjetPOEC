@@ -93,7 +93,7 @@ class PagesController extends Controller {
 
                 if($idNewUser > 0)
                 {
-                    $result=$this->profilService->insertNewProfil($idNewUser);
+                    $this->profilService->insertNewProfil($idNewUser);
                     $this->setFlash("Succes inscription","success");
                 } else {
                     $this->setFlash("Inscription Unavailable -  ".$idNewUser,"warning");
@@ -118,13 +118,13 @@ class PagesController extends Controller {
                 $sign = $this->utilisateurService->checkUser($email, $password);
                 if($sign) {
                     $_SESSION['email'] = $email;
-                    $_SESSION['connected'] = true;
+                    $_SESSION['id'] = $sign[0]->getid();
 
                     $this->setFlash("Succes inscription","success");
-                    header ('location: index.php');
+                    //header ('location: index.php');
 
                 } else {
-                    $this->setFlash("Connection fails. Check your email and password.  ".$sign,"warning");
+                    $this->setFlash("Connection fails. Check your email and password.  ","warning");
                 }
 
             } else {
@@ -151,6 +151,13 @@ class PagesController extends Controller {
     function profil()
     {
         $href = $this->config['href'];
+
+
+
+
+
+
+
         require ROOT.'/views/web/pages/profil.php';
     }
 
