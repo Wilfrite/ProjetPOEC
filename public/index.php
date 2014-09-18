@@ -68,9 +68,7 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
     case 'panier' :
     $pagesController->panier($params);
     break;
-    case 'validation' :
-        $pagesController->validation();
-        break;
+
     default:
         $pagesController->error404();
         break;
