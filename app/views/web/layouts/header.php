@@ -37,8 +37,8 @@
                 <div class="col-sm-6">
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> info@poecstore.com</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i> +31 8 36 65 65 65 </a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> bgates@apple.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="<?php echo isset($_SESSION['email']) ? $this->url('pages','profil') : $this->url('pages','login') ;?>"><i class="fa fa-user"></i><?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ' Account' ;?></a></li>
+                            <li><a href="<?php echo isset($_SESSION['email']) ? $this->url('pages','profil') : $this->url('pages','login') ;?>"><i class="fa fa-user"></i>Votre compte <?php echo isset($_SESSION['email']) ? "(".$_SESSION['email'].")" : '' ;?></a></li>
                             <li><a href="<?php echo $this->url('pages','panier');?>"><i class="fa fa-shopping-cart"></i> Panier  <?php  echo  (isset($_SESSION['panier']))  ? "(".array_sum($_SESSION['panier']).")" : "" ;?></a></li>
                             <li><a href="<?php echo isset($_SESSION['email']) ? $this->url('pages','deconnexion') : $this->url('pages','login') ;?>"><i class="fa fa-lock"></i><?php echo isset($_SESSION['email']) ? ' Déconnexion' : ' Connexion' ;?></a></li>
                         </ul>
@@ -92,8 +92,8 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="index.php" class="active">Home</a></li>
-                            <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                            <li><a href="index.php" class="active">Accueil</a></li>
+                            <li class="dropdown"><a href="#">Boutique<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="index.php">Nouveauté</a></li>
                                     <li><a href="<?php echo $this->url('pages','panier');?>">Panier</a></li>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
+                        <input type="text" placeholder="Recherche"/>
                     </div>
                 </div>
             </div>
