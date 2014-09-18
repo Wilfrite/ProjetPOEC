@@ -1540,18 +1540,19 @@ h2.title {
   background:#FE980F;
   color: #FFFFFF;
   padding: 3px 7px;
+
 }
 
-.breadcrumbs .breadcrumb li a:after {
-  content:"";
+.breadcrumbs .breadcrumb li a:before {
+  content:" ";
   height:auto;
   width: auto;
   border-width: 8px;
   border-style: solid;
   border-color:transparent transparent transparent #FE980F;
   position: absolute;
-  top: 11px;
-  left:48px;
+  top: 10px;
+  left:50px;
 
 }
 

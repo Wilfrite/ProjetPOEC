@@ -153,7 +153,7 @@ class PagesController extends Controller {
        require ROOT.'/views/web/pages/error404.php';
     }
 
-    function panier(){
+    function panier($valide){
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
         $tva =.2;
@@ -167,8 +167,12 @@ class PagesController extends Controller {
 
             }
         $panier_courant = $this->articleService->findAllArticlesById($tab_ids);
-
-        require ROOT.'/views/web/pages/panier.php';
+        if (isset($valide))
+        {
+            require ROOT.'/views/web/pages/validation.php';
+        } else {
+              require ROOT.'/views/web/pages/panier.php';
+        }
     }
 
     function addToCart($id_article)
@@ -215,5 +219,9 @@ class PagesController extends Controller {
         exit();
 
     }
+
+
+
+
 
 }
