@@ -14,6 +14,7 @@ class PagesController extends Controller {
     protected $categoriesService;
     protected $motCleService;
     protected $utilisateurService;
+    protected $profilService;
 
     public function __construct(array $config,$dbh) {
         $this->config = $config;
@@ -21,6 +22,7 @@ class PagesController extends Controller {
         $this->categoriesService = new CategorieService($dbh);
         $this->motCleService = new motCleService($dbh);
         $this->utilisateurService = new utilisateurService($dbh);
+        $this->profilService = new profilService($dbh);
     }
 
     function index()
@@ -81,15 +83,20 @@ class PagesController extends Controller {
             $isEmailValid = filter_var($email, FILTER_VALIDATE_EMAIL);
 
             $password= filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-            $isPasswordValid = (strlen($password)>6) ? true : false;
+            $isPasswordValid = (strlen($password)>5) ? true : false;
 
 
-            if ($isEmailValid and $isPasswordValid){
-                $sign = $this->utilisateurService->insertNewUser($email, $password);
-                if($sign == null) {
+            if ($isEmailValid and $isPasswordValid)
+            {
+                $idNewUser = $this->utilisateurService->insertNewUser($email, $password);
+                //$this->profilService->insertNewProfil->insertNewProfil($idNewUser);
+
+                if($idNewUser > 0)
+                {
+                    $result=$this->profilService->insertNewProfil($idNewUser);
                     $this->setFlash("Succes inscription","success");
                 } else {
-                    $this->setFlash("Inscription Unavailable -  ".$sign,"warning");
+                    $this->setFlash("Inscription Unavailable -  ".$idNewUser,"warning");
                 }
 
             } else {
@@ -160,7 +167,7 @@ class PagesController extends Controller {
        require ROOT.'/views/web/pages/error404.php';
     }
 
-    function panier(){
+    function panier($valide){
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
         $tva =.2;
@@ -174,8 +181,12 @@ class PagesController extends Controller {
 
             }
         $panier_courant = $this->articleService->findAllArticlesById($tab_ids);
-
-        require ROOT.'/views/web/pages/panier.php';
+        if (isset($valide))
+        {
+            require ROOT.'/views/web/pages/validation.php';
+        } else {
+              require ROOT.'/views/web/pages/panier.php';
+        }
     }
 
     function addToCart($id_article)
@@ -183,18 +194,29 @@ class PagesController extends Controller {
 
         if(isset($_POST['quantite_modifie_article']))
         {
-            $_SESSION['panier'][$id_article] = $_POST['quantite_modifie_article'];
+            if ($_POST['quantite_modifie_article']>0)
+            $_SESSION['panier'][$id_article] = intval($_POST['quantite_modifie_article']);
         }
         else{
 
-        if(!isset($_POST['quantite_article']))
-        {
-            $_SESSION['panier'][$id_article] += 1;
+            if(!isset($_POST['quantite_article']))
+            {
+                $_SESSION['panier'][$id_article] += 1;
+            }
+            else
+            {
+                if ($_POST['quantite_article']>0)
+                {
+                $_SESSION['panier'][$id_article] += intval($_POST['quantite_article']);
+                }
+                else
+                {
+                    $url = $this->url('pages','article',"$id_article");
+                    header("Location:$url");
+                    exit();
+                }
+            }
         }
-        else{
-            $_SESSION['panier'][$id_article] += $_POST['quantite_article'];
-        }
-    }
         $url = $this->url('pages','panier');
         header("Location:$url");
         exit();
@@ -211,5 +233,9 @@ class PagesController extends Controller {
         exit();
 
     }
+
+
+
+
 
 }

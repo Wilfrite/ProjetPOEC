@@ -8,7 +8,8 @@
                     <li class="active">Panier</li>
                 </ol>
             </div>
-            <?php $total_panier = 0;
+            <?php
+            $total_panier = 0;
             if (!empty($panier_courant)) { ?>
             <div class="table-responsive cart_info">
 
@@ -136,12 +137,12 @@
                     <div class="total_area">
                         <ul>
                             <li>Sous-total hors taxe<span> <?php echo $total_panier ; ?> €</span></li>
-                            <li>Montant TVA<span> <?php echo $montant_tva = $total_panier * $tva;   ?>€</span></li>
+                            <li>Montant TVA<span> <?php echo $montant_tva = $total_panier * $tva;   ?> €</span></li>
                             <li>Frais de port <span>Gratuit</span></li>
-                            <li>Total <span><?php echo $totalglobal = $total_panier + $montant_tva ; ?>€</span></li>
+                            <li>Total <span><?php echo $totalglobal = $total_panier + $montant_tva ; ?> €</span></li>
                         </ul>
 <!--                        <a class="btn btn-default update" href="">Update</a>-->
-                        <a class="btn btn-default check_out" href="">Valider le panier</a>
+                        <a class="btn btn-default check_out" href="<?php echo $this->url('pages','panier','valide');?>">Valider le panier</a>
                     </div>
                 </div>
             </div>
