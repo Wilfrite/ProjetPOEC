@@ -111,7 +111,7 @@ class PagesController extends Controller {
             $isEmailValid = filter_var($email, FILTER_SANITIZE_EMAIL);
 
             $password= filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-            $isPasswordValid = (strlen($password)>6) ? true : false;
+            $isPasswordValid = (strlen($password)>5) ? true : false;
 
 
             if ($isEmailValid and $isPasswordValid){
@@ -120,7 +120,7 @@ class PagesController extends Controller {
                     $_SESSION['email'] = $email;
                     $_SESSION['id'] = $sign[0]->getid();
 
-                    $this->setFlash("Succes inscription","success");
+                    $this->setFlash("Succes Connection","success");
                     //header ('location: index.php');
 
                 } else {
