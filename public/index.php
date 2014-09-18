@@ -27,7 +27,7 @@ try {
 
 $pagesController = new PagesController($config,$dbh);
 
-$id_article= isset($_GET['p'])? $_GET['p'] : null;
+$params= isset($_GET['p'])? $_GET['p'] : null;
 
 
 switch(isset($_GET['a'])? $_GET['a'] : 'index')
@@ -36,7 +36,7 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
         $pagesController->index();
         break;
     case 'article' :
-        $pagesController->detailArticle($id_article);
+        $pagesController->detailArticle($params);
         break;
     case 'login' :
         $pagesController->login();
@@ -47,7 +47,7 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
     case 'profil' :
         $pagesController->profil();
         break;
-   /* case 'comment' :
+    /* case 'comment' :
         $pagesController->comment($id_post);
         break;
     case 'about' :
@@ -60,14 +60,17 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
         $pagesController->error404();
         break;
     case 'addToCart' :
-        $pagesController->addToCart($id_article);
+        $pagesController->addToCart($params);
         break;
     case 'removeCart' :
-        $pagesController->removeCart($id_article);
+        $pagesController->removeCart($params);
         break;
     case 'panier' :
-    $pagesController->panier();
+    $pagesController->panier($params);
     break;
+    case 'validation' :
+        $pagesController->validation();
+        break;
     default:
         $pagesController->error404();
         break;

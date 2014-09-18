@@ -118,13 +118,13 @@ class PagesController extends Controller {
                 $sign = $this->utilisateurService->checkUser($email, $password);
                 if($sign) {
                     $_SESSION['email'] = $email;
-                    $_SESSION['connected'] = true;
+                    $_SESSION['id'] = $sign[0]->getid();
 
                     $this->setFlash("Succes inscription","success");
-                    header ('location: index.php');
+                    //header ('location: index.php');
 
                 } else {
-                    $this->setFlash("Connection fails. Check your email and password.  ".$sign,"warning");
+                    $this->setFlash("Connection fails. Check your email and password.  ","warning");
                 }
 
             } else {
@@ -151,6 +151,13 @@ class PagesController extends Controller {
     function profil()
     {
         $href = $this->config['href'];
+
+
+
+
+
+
+
         require ROOT.'/views/web/pages/profil.php';
     }
 
@@ -160,7 +167,7 @@ class PagesController extends Controller {
        require ROOT.'/views/web/pages/error404.php';
     }
 
-    function panier(){
+    function panier($valide){
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
         $tva =.2;
@@ -174,8 +181,12 @@ class PagesController extends Controller {
 
             }
         $panier_courant = $this->articleService->findAllArticlesById($tab_ids);
-
-        require ROOT.'/views/web/pages/panier.php';
+        if (isset($valide))
+        {
+            require ROOT.'/views/web/pages/validation.php';
+        } else {
+              require ROOT.'/views/web/pages/panier.php';
+        }
     }
 
     function addToCart($id_article)
@@ -222,5 +233,9 @@ class PagesController extends Controller {
         exit();
 
     }
+
+
+
+
 
 }
