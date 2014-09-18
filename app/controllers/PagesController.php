@@ -93,7 +93,7 @@ class PagesController extends Controller {
 
                 if($idNewUser > 0)
                 {
-                    $result=$this->profilService->insertNewProfil($idNewUser);
+                    $this->profilService->insertNewProfil($idNewUser);
                     $this->setFlash("Succes inscription","success");
                 } else {
                     $this->setFlash("Inscription Unavailable -  ".$idNewUser,"warning");

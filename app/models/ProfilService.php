@@ -31,4 +31,27 @@ class ProfilService {
         return null;
     }
 
+    public function  viewProfil($idUser)
+    {
+        try {
+            // Sélection des données
+            $sql = "SELECT *
+            FROM  `profil`
+            JOIN `utilisateur` ON `profil`.`id_utilisateur` = `utilisateur`.`id`
+            JOIN `adresse` ON `profil`.`id_adresse` = `adresse`.`id`
+            Where `profil`.`id_utilisateur`=?";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute(array($idUser));
+            $stmt = NULL;
+        } catch (PDOException $e) {
+            return ('Erreur : ' . $e->getMessage());
+            //die('Erreur : ' . $e->getMessage());
+        }
+        return (isset($result) ? $result : null);
+    }
+
+
+
+
+
 } 
