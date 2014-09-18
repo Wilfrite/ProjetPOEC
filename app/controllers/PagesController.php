@@ -111,7 +111,7 @@ class PagesController extends Controller {
             $isEmailValid = filter_var($email, FILTER_SANITIZE_EMAIL);
 
             $password= filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-            $isPasswordValid = (strlen($password)>6) ? true : false;
+            $isPasswordValid = (strlen($password)>5) ? true : false;
 
 
             if ($isEmailValid and $isPasswordValid){
@@ -121,8 +121,8 @@ class PagesController extends Controller {
                     $_SESSION['id'] = $sign[0]->getid();
 
                     $this->setFlash("Succes inscription","success");
-                    //header ('location: index.php');
-
+                    header ('location: index.php');
+                    exit();
                 } else {
                     $this->setFlash("Connection fails. Check your email and password.  ","warning");
                 }
@@ -151,12 +151,25 @@ class PagesController extends Controller {
     function profil()
     {
         $href = $this->config['href'];
+        $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
 
+        if (isset($_POST['submit_update_profil_form'])){
+            var_dump($_SESSION['id']);
+            $prenom =filter_var($_POST['prenom'],FILTER_SANITIZE_STRING);
+            $nom =filter_var($_POST['nom'],FILTER_SANITIZE_STRING);
+            $adresse =filter_var($_POST['adresse'],FILTER_SANITIZE_STRING);
+            $codePostal =filter_var($_POST['codePostal'],FILTER_SANITIZE_STRING);
+            $ville =filter_var($_POST['ville'],FILTER_SANITIZE_STRING);
+            $profilUpdate = $this->profilService->updateProfil($_SESSION['id'], $prenom, $nom, $adresse, $codePostal, $ville);
 
-
-
-
-
+            if(!$profilUpdate)
+            {
+                $this->setFlash("Success update","success");
+                $url = $this->url('pages','profil');
+                header("Location:$url");
+                exit();
+            }
+        }
 
         require ROOT.'/views/web/pages/profil.php';
     }
