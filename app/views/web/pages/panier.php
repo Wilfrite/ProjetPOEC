@@ -136,9 +136,9 @@
                     <div class="total_area">
                         <ul>
                             <li>Sous-total hors taxe<span> <?php echo $total_panier ; ?> €</span></li>
-                            <li>Montant TVA<span> <?php echo $montant_tva = $total_panier * $tva;   ?>€</span></li>
+                            <li>Montant TVA<span> <?php echo $montant_tva = $total_panier * $tva;   ?> €</span></li>
                             <li>Frais de port <span>Gratuit</span></li>
-                            <li>Total <span><?php echo $totalglobal = $total_panier + $montant_tva ; ?>€</span></li>
+                            <li>Total <span><?php echo $totalglobal = $total_panier + $montant_tva ; ?> €</span></li>
                         </ul>
 <!--                        <a class="btn btn-default update" href="">Update</a>-->
                         <a class="btn btn-default check_out" href="">Valider le panier</a>
