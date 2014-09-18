@@ -143,13 +143,13 @@ class PagesController extends Controller {
 
     function profil()
     {
+        $href = $this->config['href'];
         require ROOT.'/views/web/pages/profil.php';
     }
 
     function error404(){
         $href = $this->config['href'];
         $title="POECSTORE - error404";
-        $href = $this->config['href'];
        require ROOT.'/views/web/pages/error404.php';
     }
 
