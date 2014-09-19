@@ -66,7 +66,7 @@ class Article {
      */
     public function getDescription()
     {
-        return $this->description;
+        return $this->description."</br> Lorem Elsass ipsum turpis, sit Oberschaeffolsheim tellus habitant leo tellus sit consectetur wurscht schneck ac morbi ornare Coopé de Truchtersheim sed Morbi rucksack quam. schnaps turpis in, météor baeckeoffe Spätzle auctor, merci vielmols hopla Richard Schirmeck non picon bière hopla Chulia Roberstau Christkindelsmärik barapli wie rossbolla aliquam und Oberschaeffolsheim sed geht";
     }
 
     /**

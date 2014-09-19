@@ -305,7 +305,11 @@ class PagesController extends Controller {
         exit();
 
     }
-
+    function contact(){
+        $href = $this->config['href'];
+        $hrefImage = $this->config['href_image'];
+        require ROOT.'/views/web/pages/contact.php';
+    }
 
 
 

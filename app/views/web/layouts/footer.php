@@ -7,7 +7,7 @@
                     <div class="single-widget">
                         <h2>Service</h2>
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Contactez nous</a></li>
+                            <li><a href="<?php echo $this->url('pages','contact');?>">Contactez nous</a></li>
                             <li><a href="#">FAQ</a></li>
                         </ul>
                     </div>
