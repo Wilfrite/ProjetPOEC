@@ -6,6 +6,7 @@
  * Time: 16:06
  */
 require_once ROOT.'/models/Article.php';
+
 class ArticleService {
     protected $dbh;
 

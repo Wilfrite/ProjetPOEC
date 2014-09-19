@@ -9,5 +9,33 @@ require_once ROOT.'/models/Adresse.php';
 
 class AdresseService {
 
+    protected $dbh;
+
+    function __construct(PDO $dbh) {
+        $this->dbh = $dbh;
+    }
+
+
+public function insertNewAdresse()
+    {
+        try {
+            // Sélection des données
+            $sql = "INSERT INTO adresse (id, adresse, cp, ville) VALUES
+            (:id, :adresse, :cp, :ville)";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute([
+                    ':id' => null,
+                    ':adresse' => null,
+                    ':cp' => null,
+                    ':ville' => null,
+                ]);
+            $stmt = NULL;
+            $result=(int)($this->dbh->lastInsertId());
+        } catch (PDOException $e) {
+            return ('Erreur : ' . $e->getMessage());
+            //die('Erreur : ' . $e->getMessage());
+        }
+        return $result;
+    }
 
 }

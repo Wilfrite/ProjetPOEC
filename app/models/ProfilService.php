@@ -9,7 +9,7 @@ class ProfilService {
         $this->dbh = $dbh;
     }
 
-    public function  insertNewProfil($idNewUser)
+    public function  insertNewProfil($idNewUser, $idNewAdresse)
     {
         try {
             // Sélection des données
@@ -21,7 +21,7 @@ class ProfilService {
                     ':nom' => null,
                     ':prenom' => null,
                     ':id_utilisateur' => $idNewUser,
-                    ':id_adresse' => null,
+                    ':id_adresse' => $idNewAdresse,
                 ]);
             $stmt = NULL;
         } catch (PDOException $e) {
@@ -70,14 +70,14 @@ class ProfilService {
                         ':codePostal' => $codePostal,
                         ':ville' => $ville
                     ]);
+            var_dump($stmt);
             $stmt = NULL;
         } catch (PDOException $e) {
             return ('Erreur : ' . $e->getMessage());
             //die('Erreur : ' . $e->getMessage());
         }
-        return (isset($result) ? $result : null);
+        return (isset($stmt) ? $stmt : null);
     }
 
 
-
-} 
+}

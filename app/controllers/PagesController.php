@@ -23,6 +23,7 @@ class PagesController extends Controller {
         $this->motCleService = new motCleService($dbh);
         $this->utilisateurService = new utilisateurService($dbh);
         $this->profilService = new profilService($dbh);
+        $this->adresseService = new adresseService($dbh);
     }
 
     function index()
@@ -89,11 +90,11 @@ class PagesController extends Controller {
             if ($isEmailValid and $isPasswordValid)
             {
                 $idNewUser = $this->utilisateurService->insertNewUser($email, $password);
-                //$this->profilService->insertNewProfil->insertNewProfil($idNewUser);
+                $idNewAdresse = $this->adresseService->insertNewAdresse();
 
                 if($idNewUser > 0)
                 {
-                    $this->profilService->insertNewProfil($idNewUser);
+                    $this->profilService->insertNewProfil($idNewUser, $idNewAdresse);
                     $this->setFlash("Succes inscription","success");
                 } else {
                     $this->setFlash("Inscription Unavailable -  ".$idNewUser,"warning");
@@ -154,13 +155,15 @@ class PagesController extends Controller {
         $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
 
         if (isset($_POST['submit_update_profil_form'])){
-            var_dump($_SESSION['id']);
+
             $prenom =filter_var($_POST['prenom'],FILTER_SANITIZE_STRING);
             $nom =filter_var($_POST['nom'],FILTER_SANITIZE_STRING);
             $adresse =filter_var($_POST['adresse'],FILTER_SANITIZE_STRING);
             $codePostal =filter_var($_POST['codePostal'],FILTER_SANITIZE_STRING);
             $ville =filter_var($_POST['ville'],FILTER_SANITIZE_STRING);
+
             $profilUpdate = $this->profilService->updateProfil($_SESSION['id'], $prenom, $nom, $adresse, $codePostal, $ville);
+
 
             if(!$profilUpdate)
             {
