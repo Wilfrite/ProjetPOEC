@@ -13,7 +13,7 @@
                         <div class="productinfo text-center">
                             <img src="<?php echo $hrefImage ?><?php echo $article->getimage() ;?>" alt="ImageArticle" id="ImageArticle"/>
                             <h2><?php echo $article->getprixTVA() ;?>€</h2>
-                            <p><?php echo $article->getnom() ;?></p>
+                            <p><?php echo substr($article->getnom(),0,19);?></p>
                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                         </div>
                         <div class="product-overlay">
