@@ -8,7 +8,7 @@
                     <div class="shopper-info">
                         <p>Compte Utilisateur</p>
                         <form>
-                            <input type="email" name="" id="" placeholder="email" value="<?php echo isset($viewProfil[0]->adresse_mail) ? $viewProfil[0]->adresse_mail : $_SESSION['email']; ?>">
+                            <input type="email" name="email" id="email" placeholder="email" value="<?php echo isset($viewProfil[0]->adresse_mail) ? $viewProfil[0]->adresse_mail : $_SESSION['email']; ?>">
                             <input type="password" name="motDePasse" id="motDePasse" placeholder="Mot de passe">
                             <input type="password" name="motDePasseNouveau" id="motDePasseNouveau" placeholder="Nouveau mot de passe">
                             <input type="password" name="motDePasseNouveauConfirmation" id="motDePasseNouveauConfirmation" placeholder="Confirmer Nouveau mot de passe">

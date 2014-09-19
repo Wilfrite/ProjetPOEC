@@ -37,6 +37,29 @@ class UtilisateurService {
 
     }
 
+    public function  updateUser($idUser, $email, $password)
+    {
+        try {
+            // Sélection des données
+            $sql = "UPDATE utilisateur
+            SET `profil`.`nom` = :nom, `profil`.`prenom` = :prenom, `adresse`.`adresse` = :adresse, `adresse`.`cp` = :codePostal, `adresse`.`ville` = :ville
+            WHERE  `id_utilisateur` = :id";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute([
+                    ':email' => $email,
+                    ':password' => $password
+                ]);
+            $stmt->closeCursor();
+            $result=(int)($this->dbh->lastInsertId());
+        } catch (PDOException $e) {
+            return ('Erreur : ' . $e->getMessage());
+            //die('Erreur : ' . $e->getMessage());
+        }
+
+        return $result;
+
+    }
+
     public function checkUser($email, $password)
     {
         try {
@@ -45,6 +68,26 @@ class UtilisateurService {
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute([
                     ':email' => $email,
+                    ':password' => $password
+                ]);
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, "Utilisateur");
+            $stmt->closeCursor();
+        } catch (PDOException $e) {
+            return ('Erreur : ' . $e->getMessage());
+            //die('Erreur : ' . $e->getMessage());
+        }
+
+        return (isset($result) ? $result : null);
+    }
+
+    public function checkModifUser($idUser, $password)
+    {
+        try {
+            // Sélection des données
+            $sql = "SELECT * FROM utilisateur WHERE id = :id AND mot_de_passe = :password ";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute([
+                    ':id' => $idUser,
                     ':password' => $password
                 ]);
             $result = $stmt->fetchAll(PDO::FETCH_CLASS, "Utilisateur");
