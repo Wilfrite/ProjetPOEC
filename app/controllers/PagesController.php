@@ -184,10 +184,12 @@ class PagesController extends Controller {
     }
 
     function panier($valide){
+        // constantes
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
+        $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
         $tva =.2;
-        // erreur a check
+        // gestion d'erreur du panier vide
         if(empty($_SESSION['panier']))
         {
             $tab_ids  = array(0);
@@ -196,20 +198,33 @@ class PagesController extends Controller {
             $tab_ids = array_keys($_SESSION['panier']);
 
             }
+
         $panier_courant = $this->articleService->findAllArticlesById($tab_ids);
+
+        // passage de validation de panier
         if ($valide== "valide")
         {
-           if ( isset($_SESSION['email']) )
+           if ( isset($_SESSION['email']) and !empty($_SESSION['panier']) )
            {
             require ROOT.'/views/web/pages/validation.php';
            }
-            else
+            else  if ( !isset($_SESSION['email']))
             {
                 require ROOT.'/views/web/pages/login.php';
+            }
+            else if (empty($_SESSION['panier']))
+            {
+                header("Location:index.php");
+                exit();
             }
         } else {
               require ROOT.'/views/web/pages/panier.php';
         }
+
+        // passage de confirmation
+
+
+
     }
 
     function addToCart($id_article)

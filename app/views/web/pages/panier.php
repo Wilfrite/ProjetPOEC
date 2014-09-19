@@ -142,7 +142,7 @@
                             <li>Total <span><?php echo $totalglobal = $total_panier + $montant_tva ; ?> €</span></li>
                         </ul>
 <!--                        <a class="btn btn-default update" href="">Update</a>-->
-                        <a class="btn btn-default check_out" href="<?php echo isset($_SESSION['email']) ? $this->url('pages','panier','valide')."\">Valider le panier" : $this->url('pages','login')."\">Veuillez vous connectez" ;?></a>
+                        <a class="btn btn-default check_out" href="<?php echo isset($_SESSION['email'])  && !empty($_SESSION['panier']) ? $this->url('pages','panier','valide')."\">Valider le panier" : (isset($_SESSION['email'])  && empty($_SESSION['panier']) ? $this->url('pages','index')."\">Votre panier est vide" : $this->url('pages','login')."\">Veuillez vous connectez") ;?></a>
                     </div>
                 </div>
             </div>
