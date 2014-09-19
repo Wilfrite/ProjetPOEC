@@ -43,20 +43,17 @@
                                     <p><?php echo $item_panier->getprixTVA()  ;?>€</p>
                                 </td>
                                 <td class="cart_quantity">
-                                    <div class="cart_quantity_button">
 
-                                        <form method="post"  name="addtocartquantity" action="<?php echo $this->url('pages','addToCart',$item_panier->getid());?>">
-                                            <input class="cart_quantity_input" type="text" name="quantite_modifie_article" value="<?php echo $_SESSION['panier'][$item_panier->getid()] ;?>"  size="2">
-                                            <button type="submit" class="btn btn-default cart" name="submit_to_cart" >Modifier
-                                            </button></form>
-                                    </div>
+                                <td class="cart_price">
+
+                                    <p> <?php echo $_SESSION['panier'][$item_panier->getid()] ;?></p>
+                                </td>
+
                                 </td>
                                 <td class="cart_total">
                                     <p class="cart_total_price"><?php  echo  $sous_total =  $item_panier->getprixTVA() *  $_SESSION['panier'][$item_panier->getid()];  ?>€</p>
                                 </td>
-                                <td class="cart_delete">
-                                    <a class="cart_quantity_delete" href="<?php echo $this->url('pages','removeCart',$item_panier->getid());?>"><i class="fa fa-times"></i></a>
-                                </td>
+
                             </tr>
                             <!-- end foreach -->
                             <?php
@@ -82,6 +79,11 @@
                                     <tr>
                                         <td>Total</td>
                                         <td><span><?php echo $totalglobal = $total_panier + $montant_tva ; ?> €</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><form method="post"  name="modify_cart" action="<?php echo $this->url('pages','panier');?>">
+                                            <button type="submit" class="btn btn-default cart" name="modify_cart" >Modifier le panier
+                                            </button></form></td>
                                     </tr>
                                 </table>
                             </td>
