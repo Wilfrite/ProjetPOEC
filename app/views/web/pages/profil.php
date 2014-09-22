@@ -4,19 +4,28 @@
     <div class="container">
         <div class="shopper-informations">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="shopper-info">
-                        <p>Compte Utilisateur</p>
-                        <form>
+                        <p>Change your mail</p>
+                        <form role="form" class="clearfix" method="post">
                             <input type="email" name="email" id="email" placeholder="email" value="<?php echo isset($viewProfil[0]->adresse_mail) ? $viewProfil[0]->adresse_mail : $_SESSION['email']; ?>">
                             <input type="password" name="motDePasse" id="motDePasse" placeholder="Mot de passe">
-                            <input type="password" name="motDePasseNouveau" id="motDePasseNouveau" placeholder="Nouveau mot de passe">
-                            <input type="password" name="motDePasseNouveauConfirmation" id="motDePasseNouveauConfirmation" placeholder="Confirmer Nouveau mot de passe">
-                            <button type="submit" name="submit_update_user_form" class="btn btn-primary" >Modifier</button>
+                            <button type="submit" name="submit_update_mail_form" class="btn btn-primary" >Modifier</button>
                         </form>
                     </div>
                 </div>
-                <div class="col-sm-8 clearfix">
+                <div class="col-sm-3">
+                    <div class="shopper-info">
+                        <p>Change your password</p>
+                        <form role="form" class="clearfix" method="post">
+                            <input type="password" name="motDePasse" id="motDePasse" placeholder="Mot de passe">
+                            <input type="password" name="motDePasseNouveau" id="motDePasseNouveau" placeholder="Nouveau mot de passe">
+                            <input type="password" name="motDePasseNouveauConfirmation" id="motDePasseNouveauConfirmation" placeholder="Confirmer Nouveau mot de passe">
+                            <button type="submit" name="submit_update_password_form" class="btn btn-primary" >Modifier</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-6 clearfix">
                     <div class="bill-to">
                         <p>Profil</p>
                         <div class="form-one">

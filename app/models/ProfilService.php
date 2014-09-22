@@ -70,7 +70,6 @@ class ProfilService {
                         ':codePostal' => $codePostal,
                         ':ville' => $ville
                     ]);
-            var_dump($stmt);
             $stmt = NULL;
         } catch (PDOException $e) {
             return ('Erreur : ' . $e->getMessage());

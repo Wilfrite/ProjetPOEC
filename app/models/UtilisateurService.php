@@ -37,26 +37,47 @@ class UtilisateurService {
 
     }
 
-    public function  updateUser($idUser, $email, $password)
+    public function  updatePassword($idUser, $password)
     {
         try {
             // Sélection des données
             $sql = "UPDATE utilisateur
-            SET `profil`.`nom` = :nom, `profil`.`prenom` = :prenom, `adresse`.`adresse` = :adresse, `adresse`.`cp` = :codePostal, `adresse`.`ville` = :ville
-            WHERE  `id_utilisateur` = :id";
+            SET mot_de_passe = :password
+            WHERE  id = :id";
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute([
-                    ':email' => $email,
+                    ':id' => $idUser,
                     ':password' => $password
                 ]);
-            $stmt->closeCursor();
-            $result=(int)($this->dbh->lastInsertId());
+            $stmt = NULL;
         } catch (PDOException $e) {
             return ('Erreur : ' . $e->getMessage());
             //die('Erreur : ' . $e->getMessage());
         }
 
-        return $result;
+        return $stmt;
+
+    }
+
+    public function  updateMail($idUser, $email)
+    {
+        try {
+            // Sélection des données
+            $sql = "UPDATE utilisateur
+            SET adresse_mail = :email
+            WHERE  id = :id";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute([
+                    ':id' => $idUser,
+                    ':email' => $email
+                ]);
+            $stmt = NULL;
+        } catch (PDOException $e) {
+            return ('Erreur : ' . $e->getMessage());
+            //die('Erreur : ' . $e->getMessage());
+        }
+
+        return $stmt;
 
     }
 

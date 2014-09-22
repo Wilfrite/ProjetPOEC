@@ -108,15 +108,17 @@ class PagesController extends Controller {
 
         if (isset($_POST['submit_login_form'])){
 
-            $email= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+            $email= filter_var($_POST['emaillog'], FILTER_SANITIZE_EMAIL);
             $isEmailValid = filter_var($email, FILTER_VALIDATE_EMAIL);
 
-            $password= filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+            $password= filter_var($_POST['passwordlog'], FILTER_SANITIZE_STRING);
             $isPasswordValid = (strlen($password)>5) ? true : false;
 
 
             if ($isEmailValid and $isPasswordValid){
+
                 $sign = $this->utilisateurService->checkUser($email, $password);
+
                 if($sign) {
                     $_SESSION['email'] = $email;
                     $_SESSION['id'] = $sign[0]->getid();
@@ -174,7 +176,37 @@ class PagesController extends Controller {
             }
         }
 
-        if (isset($_POST['submit_update_user_form'])){
+        if (isset($_POST['submit_update_password_form'])){
+
+            $password= filter_var($_POST['motDePasse'], FILTER_SANITIZE_STRING);
+            $isPasswordValid = (strlen($password)>5) ? true : false;
+
+            $passwordNew= filter_var($_POST['motDePasseNouveau'], FILTER_SANITIZE_STRING);
+            $isPasswordNewValid = (strlen($password)>5) ? true : false;
+
+
+            if ($isPasswordValid and $isPasswordNewValid and $passwordNew == $_POST['motDePasseNouveauConfirmation']){
+
+                $sign = $this->utilisateurService->checkModifUser($_SESSION['id'], $password);
+
+                if($sign) {
+
+                    $this->utilisateurService->updatePassword($_SESSION['id'], $passwordNew);
+
+                    $this->setFlash("Succes Modification","success");
+                    $url = $this->url('pages','profil');
+                    header("Location:$url");
+                    exit();
+                } else {
+                    $this->setFlash("Connection fails. Check your password.","warning");
+                }
+
+            } else {
+                $this->setFlash("Email must be a valid and Password must be a minimun of 6 characters","danger");
+            }
+        }
+
+        if (isset($_POST['submit_update_mail_form'])){
 
             $email= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
             $isEmailValid = filter_var($email, FILTER_VALIDATE_EMAIL);
@@ -182,25 +214,22 @@ class PagesController extends Controller {
             $password= filter_var($_POST['motDePasse'], FILTER_SANITIZE_STRING);
             $isPasswordValid = (strlen($password)>5) ? true : false;
 
-            $password= filter_var($_POST['motDePasseNouveau'], FILTER_SANITIZE_STRING);
-            $isPasswordNewValid = (strlen($password)>5) ? true : false;
+            if ($isEmailValid and $isPasswordValid){
 
-            $password= filter_var($_POST['motDePasseNouveauConfirmation'], FILTER_SANITIZE_STRING);
-            $isPasswordNewConfirmValid = (strlen($password)>5) ? true : false;
-
-            if ($isEmailValid and $isPasswordValid and $isPasswordNewValid and $isPasswordNewConfirmValid){
-
-                $sign = $this->utilisateurService->checkModifUser($_SESSION['id'], $isEmailValid, $isPasswordValid);
+                $sign = $this->utilisateurService->checkModifUser($_SESSION['id'], $password);
 
                 if($sign) {
 
-                    $this->utilisateurService->updateUser($_SESSION['id'], $isEmailValid, $isPasswordNewValid);
+                    $this->utilisateurService->updateMail($_SESSION['id'], $email);
 
-                    $this->setFlash("Succes inscription","success");
-                    header ('location: index.php');
+                    $_SESSION['email'] = $email;
+
+                    $this->setFlash("Succes Modification","success");
+                    $url = $this->url('pages','profil');
+                    header("Location:$url");
                     exit();
                 } else {
-                    $this->setFlash("Connection fails. Check your email and password.  ","warning");
+                    $this->setFlash("Connection fails. Check your password.","warning");
                 }
 
             } else {

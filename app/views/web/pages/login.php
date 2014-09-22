@@ -7,8 +7,8 @@
                     <div class="login-form"><!--login form-->
                         <h2>Login to your account</h2>
                         <form role="form" class="clearfix" method="post" action="<?php echo $this->url('pages', 'login'); ?>">
-                            <input type="email" id="email" name="email" placeholder="Email Address" />
-                            <input type="password" id="password" name="password" placeholder="Mot de Passe" />
+                            <input type="email" id="emaillog" name="emaillog" placeholder="Email Address" />
+                            <input type="password" id="passwordlog" name="passwordlog" placeholder="Mot de Passe" />
                             <button type="submit" name="submit_login_form" class="btn btn-default">Login</button>
                         </form>
                     </div><!--/login form-->
