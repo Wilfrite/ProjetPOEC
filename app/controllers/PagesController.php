@@ -221,7 +221,7 @@ class PagesController extends Controller {
         // constantes
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
-        $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
+
         $tva =.2;
         // gestion d'erreur du panier vide
         if(empty($_SESSION['panier']))
@@ -240,6 +240,8 @@ class PagesController extends Controller {
         {
            if ( isset($_SESSION['email']) and !empty($_SESSION['panier']) )
            {
+
+               $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
             require ROOT.'/views/web/pages/validation.php';
            }
             else  if ( !isset($_SESSION['email']))
