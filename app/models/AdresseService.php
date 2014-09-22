@@ -15,8 +15,8 @@ class AdresseService {
         $this->dbh = $dbh;
     }
 
-
-public function insertNewAdresse()
+    // Ajout d'une adresse pour un nouvel utilisateur
+    public function insertNewAdresse()
     {
         try {
             // Sélection des données

@@ -78,6 +78,8 @@ class PagesController extends Controller {
 
     function login(){
         $href = $this->config['href'];
+
+        // validation des informations de l'inscription
         if (isset($_POST['submit_sign_form'])){
 
             $email= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
@@ -86,7 +88,7 @@ class PagesController extends Controller {
             $password= filter_var($_POST['password'], FILTER_SANITIZE_STRING);
             $isPasswordValid = (strlen($password)>5) ? true : false;
 
-
+            // Methode d'ajout d'un nouvelle utilisateur
             if ($isEmailValid and $isPasswordValid)
             {
                 $idNewUser = $this->utilisateurService->insertNewUser($email, $password);
@@ -106,6 +108,7 @@ class PagesController extends Controller {
 
         }
 
+        // validation des informations de connexion
         if (isset($_POST['submit_login_form'])){
 
             $email= filter_var($_POST['emaillog'], FILTER_SANITIZE_EMAIL);
@@ -114,7 +117,7 @@ class PagesController extends Controller {
             $password= filter_var($_POST['passwordlog'], FILTER_SANITIZE_STRING);
             $isPasswordValid = (strlen($password)>5) ? true : false;
 
-
+            // comparaison des informations de la base puis connexion
             if ($isEmailValid and $isPasswordValid){
 
                 $sign = $this->utilisateurService->checkUser($email, $password);
@@ -156,6 +159,7 @@ class PagesController extends Controller {
         $href = $this->config['href'];
         $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
 
+        // recuperation puis modification des informations du profil
         if (isset($_POST['submit_update_profil_form'])){
 
             $prenom =filter_var($_POST['prenom'],FILTER_SANITIZE_STRING);
@@ -176,6 +180,7 @@ class PagesController extends Controller {
             }
         }
 
+        // validation des informations pour la modification du password
         if (isset($_POST['submit_update_password_form'])){
 
             $password= filter_var($_POST['motDePasse'], FILTER_SANITIZE_STRING);
@@ -184,11 +189,12 @@ class PagesController extends Controller {
             $passwordNew= filter_var($_POST['motDePasseNouveau'], FILTER_SANITIZE_STRING);
             $isPasswordNewValid = (strlen($password)>5) ? true : false;
 
-
+            // comparaison des informations avec la base
             if ($isPasswordValid and $isPasswordNewValid and $passwordNew == $_POST['motDePasseNouveauConfirmation']){
 
                 $sign = $this->utilisateurService->checkModifUser($_SESSION['id'], $password);
 
+                // mise a jour du password
                 if($sign) {
 
                     $this->utilisateurService->updatePassword($_SESSION['id'], $passwordNew);
@@ -206,6 +212,7 @@ class PagesController extends Controller {
             }
         }
 
+        // validation des informations pour la modification du mail
         if (isset($_POST['submit_update_mail_form'])){
 
             $email= filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
@@ -214,10 +221,12 @@ class PagesController extends Controller {
             $password= filter_var($_POST['motDePasse'], FILTER_SANITIZE_STRING);
             $isPasswordValid = (strlen($password)>5) ? true : false;
 
+            // comparaison des informations avec la base
             if ($isEmailValid and $isPasswordValid){
 
                 $sign = $this->utilisateurService->checkModifUser($_SESSION['id'], $password);
 
+                // Mise a jour de l'email
                 if($sign) {
 
                     $this->utilisateurService->updateMail($_SESSION['id'], $email);

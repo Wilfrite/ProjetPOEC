@@ -15,6 +15,7 @@ class UtilisateurService {
         $this->dbh = $dbh;
     }
 
+    // ajout d'un nouvel utilisateur
     public function  insertNewUser($email, $password)
     {
         try {
@@ -37,6 +38,7 @@ class UtilisateurService {
 
     }
 
+    // Mise a jour du password en fonction de l'id
     public function  updatePassword($idUser, $password)
     {
         try {
@@ -59,6 +61,7 @@ class UtilisateurService {
 
     }
 
+    // Mise a jour du mail en fonction de l'id utilisateur
     public function  updateMail($idUser, $email)
     {
         try {
@@ -81,6 +84,7 @@ class UtilisateurService {
 
     }
 
+    // comparaison des informations avec la base pour la connexion (email, pwd)
     public function checkUser($email, $password)
     {
         try {
@@ -101,6 +105,7 @@ class UtilisateurService {
         return (isset($result) ? $result : null);
     }
 
+    //  comparaison des informations avec la base pour la modification du profil (id, pwd)
     public function checkModifUser($idUser, $password)
     {
         try {

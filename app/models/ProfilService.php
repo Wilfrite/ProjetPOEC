@@ -9,6 +9,7 @@ class ProfilService {
         $this->dbh = $dbh;
     }
 
+    // Ajout d'un profil pour un nouvel utilisateur
     public function  insertNewProfil($idNewUser, $idNewAdresse)
     {
         try {
@@ -31,6 +32,7 @@ class ProfilService {
         return null;
     }
 
+    // recuperation des informations de l'utilisateur connecté
     public function  viewProfil($idUser)
     {
         try {
@@ -51,6 +53,7 @@ class ProfilService {
         return (isset($result) ? $result : null);
     }
 
+    // Misa a jour des informations de l'utilisateur connecté
     public function  updateProfil($idUser, $prenom, $nom, $adresse, $codePostal, $ville)
     {
 
