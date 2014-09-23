@@ -270,10 +270,10 @@ class PagesController extends Controller {
             $tab_ids = array_keys($_SESSION['panier']);
 
             }
-
+//  récuperation des articles dans le panier (tableau d'objets)
         $panier_courant = $this->articleService->findAllArticlesById($tab_ids);
 
-        // passage de validation de panier
+        // passage de validation de panier avec redirection au login  si session  inexistante
         if ($valide== "valide")
         {
            if ( isset($_SESSION['email']) and !empty($_SESSION['panier']) )
@@ -295,45 +295,47 @@ class PagesController extends Controller {
               require ROOT.'/views/web/pages/panier.php';
         }
 
-        // passage de confirmation
+        // passage de confirmation (en cours)
 
 
 
     }
-
+// ajouter au panier
     function addToCart($id_article)
     {
-
+    // recupère la quantité modifié au panier
         if(isset($_POST['quantite_modifie_article']))
         {
             if ($_POST['quantite_modifie_article']>0)
             $_SESSION['panier'][$id_article] = intval($_POST['quantite_modifie_article']);
         }
         else{
-
+            // ajout d'un article sur le  home / index
             if(!isset($_POST['quantite_article']))
             {
                 $_SESSION['panier'][$id_article] += 1;
             }
             else
-            {
+            {   // ajout du nombre d'articles sur la page  detail
                 if ($_POST['quantite_article']>0)
                 {
                 $_SESSION['panier'][$id_article] += intval($_POST['quantite_article']);
                 }
                 else
-                {
+                {   // redirection sur lui meme si erreur d'indication
                     $url = $this->url('pages','article',"$id_article");
                     header("Location:$url");
                     exit();
                 }
             }
         }
+        //retour sur  panier pour voir l'action
         $url = $this->url('pages','panier');
         header("Location:$url");
         exit();
 
     }
+    // retirer de  l'article
     function removeCart($id_article)
     {
 
