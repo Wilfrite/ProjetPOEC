@@ -36,6 +36,7 @@ class PagesController extends Controller {
         $categories = $this->categoriesService->findAllCategories();
         $mot_cles = $this->motCleService->findAllMotCles();
         $id_category = 0;
+
         if(isset($_GET["cat"]) ) {
             $id_category = $_GET["cat"];
             $ArticlesByMehtod = $this->articleService->findByCategory($id_category);
@@ -126,6 +127,7 @@ class PagesController extends Controller {
                 if($sign) {
                     $_SESSION['email'] = $email;
                     $_SESSION['id'] = $sign[0]->getid();
+                    $_SESSION['validation']['step'] = 'step_0';
 
                     $this->setFlash("Succes inscription","success");
                     header ('location: index.php');
@@ -277,9 +279,10 @@ class PagesController extends Controller {
         // passage de validation de panier avec redirection au login  si session  inexistante
         if ($valide== "valide")
         {
-           if ( isset($_SESSION['email']) and !empty($_SESSION['panier']) )
-           {
 
+           if ( isset($_SESSION['email']) and !empty($_SESSION['panier']) ) // step 1
+           {
+               $_SESSION['validation']['step'] = 'step_1_confirmed';
                $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
             require ROOT.'/views/web/pages/validation.php';
            }
@@ -289,6 +292,7 @@ class PagesController extends Controller {
             }
             else if (empty($_SESSION['panier']))
             {
+                $_SESSION['validation']['step'] = 'step_0';
                 header("Location:index.php");
                 exit();
             }
@@ -354,7 +358,7 @@ class PagesController extends Controller {
         require ROOT.'/views/web/pages/contact.php';
     }
 
-    function paiement ($control){
+    function paiement (){
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
 
@@ -381,6 +385,37 @@ class PagesController extends Controller {
         }
 
         require ROOT.'/views/web/pages/paiement.php';
+    }
+    function validation_to_pay($control)
+    {
+        $href = $this->config['href'];
+        $hrefImage = $this->config['href_image'];
+
+        if ($_SESSION['validation']['step'] == 'step_1_confirmed')  // step 1 to step 2
+        {
+            if ($control == 'first_adress') {
+                $_SESSION['validation']['client'] = $_POST;
+                $_SESSION['validation']['step'] = 'step_2_confirmed';
+            } elseif ($control == 'second_adress') {
+                $_SESSION['validation']['client'] = $_POST;
+                $_SESSION['validation']['step'] = 'step_2_confirmed';
+            }
+        }
+        else {
+            $_SESSION['validation']['step'] = 'step_0';
+            header("Location:index.php");
+            exit();
+        }
+        if ($_SESSION['validation']['step'] == 'step_2_confirmed' ) // step 2 to step 3
+        {
+            $_SESSION['validation']['step'] = 'step_3_confirmed';
+            require ROOT.'/views/web/pages/paiement.php';
+        }
+       else {
+           $_SESSION['validation']['step'] = 'step_0';
+           header("Location:index.php");
+           exit();
+       }
     }
 
 
