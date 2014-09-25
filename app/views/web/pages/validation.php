@@ -138,25 +138,25 @@
 
                             <div class="form-one">
                                 <p>Adresse de Livraison</p>
-                                <form>
+                                <form  method="post" name="validation_adress" action="<?php echo $this->url('pages','go_to_pay',$articles->getid());?>">
                                     <input type="text" name="prenom" id="prenom" placeholder="Prenom" value="<?php echo isset ($viewProfil[0]) ? $viewProfil[0]->getprenom() : ''; ?>">
                                     <input type="text" name="nom" id="nom" placeholder="Nom" value="<?php echo isset($viewProfil[0]) ? $viewProfil[0]->getnom() :'' ?>">
                                     <input type="text" name="adresse" id="adresse" placeholder="Address" value="<?php echo isset($viewProfil[0]->adresse) ? $viewProfil[0]->adresse : '' ?>">
                                     <input type="text" name="codePostal" id="codePostal" placeholder="Code Postal" value="<?php echo isset( $viewProfil[0]->cp) ? $viewProfil[0]->cp : ''; ?>">
                                     <input type="text" name="ville" id="ville" placeholder="Ville" value="<?php echo isset($viewProfil[0]->ville) ? $viewProfil[0]->ville : ''; ?>">
 
-                                    <button type="submit" name="submit_update_profil_form" class="btn btn-primary" >useit</button></form>
+                                    <button type="submit" name="submit_take_first_adress" class="btn btn-primary" >useit</button></form>
                             </div>
 
                             <div class="form-two">
                                 <p>Ajouter une addresse</p>
-                                <form>
+                                <form  method="post" name="validation_adress" action="<?php echo $this->url('pages','go_to_pay',$articles->getid());?>">
                                     <input type="text" name="prenom" id="prenom" placeholder="Prenom" value="">
                                     <input type="text" name="nom" id="nom" placeholder="Nom" value="">
                                     <input type="text" name="adresse" id="adresse" placeholder="Address" value="">
                                     <input type="text" name="codePostal" id="codePostal" placeholder="Code Postal" value="">
                                     <input type="text" name="ville" id="ville" placeholder="Ville" value="">
-                                    <button type="submit" name="submit_update_profil_form" class="btn btn-primary" >use it</button>
+                                    <button type="submit" name="submit_take_second_adress" class="btn btn-primary" >use it</button>
                                 </form>
                             </div>
                         </div>
