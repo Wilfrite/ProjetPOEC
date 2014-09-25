@@ -65,6 +65,9 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
     case 'removeCart' :
         $pagesController->removeCart($params);
         break;
+    case 'paiement' :
+        $pagesController->paiement();
+        break;
     case 'panier' :
     $pagesController->panier($params);
     break;

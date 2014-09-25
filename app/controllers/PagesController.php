@@ -15,6 +15,7 @@ class PagesController extends Controller {
     protected $motCleService;
     protected $utilisateurService;
     protected $profilService;
+    protected $adresseService;
 
     public function __construct(array $config,$dbh) {
         $this->config = $config;
@@ -353,7 +354,14 @@ class PagesController extends Controller {
         require ROOT.'/views/web/pages/contact.php';
     }
 
+    function paiement (){
+        $href = $this->config['href'];
+        $hrefImage = $this->config['href_image'];
 
+
+
+        require ROOT.'/views/web/pages/paiement.php';
+    }
 
 
 }
