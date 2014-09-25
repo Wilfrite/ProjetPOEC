@@ -4,25 +4,17 @@
     <section id="form"><!--form-->
         <div class="container">
             <div class="row">
-                <div class="col-sm-5 col-sm-offset-1">
-                    <div class="login-form"><!--login form-->
-                        <h2>Login to your account</h2>
-                        <form role="form" class="clearfix" method="post" action="<?php echo $this->url('pages', 'login'); ?>">
-                            <input type="email" id="emaillog" name="emaillog" placeholder="Email Address" />
-                            <input type="password" id="passwordlog" name="passwordlog" placeholder="Mot de Passe" />
-                            <button type="submit" name="submit_login_form" class="btn btn-default">Login</button>
+                <div class="col-sm-5 col-sm-offset-3">
+                    <div class="login-form">
+                        <h2>Information Carte bleu</h2>
+                        <form role="form" class="clearfix" method="post" action="<?php echo $this->url('pages', '#'); ?>">
+                            <input type="text" id="nom" name="nom" placeholder="Nom et Prenom" />
+                            <input type="text" id="nb_cb" name="nb_cb" placeholder="Numero de la CB" />
+                            <input type="date" id="date" name="date" placeholder="Date d'expiration" />
+                            <input type="text" id="nb_verif" name="nb_verif" placeholder="Cryptograme" />
+                            <button type="submit" name="submit_cb_form" class="btn btn-default">Valide</button>
                         </form>
-                    </div><!--/login form-->
-                </div>
-                <div class="col-sm-6">
-                    <div class="signup-form"><!--sign up form-->
-                        <h2>New User Signup!</h2>
-                        <form role="form" class="clearfix" method="post" action="<?php echo $this->url('pages', 'login'); ?>">
-                            <input type="email" id="email" name="email" placeholder="Email Address"/>
-                            <input type="password" id="password" name="password" placeholder="Mot de Passe"/>
-                            <button type="submit" name="submit_sign_form" class="btn btn-default">Signup</button>
-                        </form>
-                    </div><!--/sign up form-->
+                    </div>
                 </div>
             </div>
         </div>

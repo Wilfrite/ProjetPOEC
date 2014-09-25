@@ -362,6 +362,27 @@ class PagesController extends Controller {
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
 
+        // recuperation puis modification des informations du profil
+        if (isset($_POST['submit_cb_form'])){
+
+            $nom =filter_var($_POST['nom'],FILTER_SANITIZE_STRING);
+            $isNomValid = (strlen($nom)>5) ? true : false;
+
+            $nb_cb =filter_var($_POST['nb_cb'],FILTER_SANITIZE_NUMBER_INT);
+            $isCBValid = (strlen($nb_cb)>15) ? true : false;
+
+            $date =filter_var($_POST['date'],FILTER_SANITIZE_STRING);
+            //$isDateValid = () ? true : false;
+
+            $nb_verif =filter_var($_POST['nb_verif'],FILTER_SANITIZE_NUMBER_INT);
+            $isVerifValid = (strlen($nb_verif)>2) ? true : false;
+
+
+            if($isNomValid and $isCBValid and $isDateValid and $isVerifValid)
+            {
+
+            }
+        }
 
         require ROOT.'/views/web/pages/paiement.php';
     }
