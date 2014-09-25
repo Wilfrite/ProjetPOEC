@@ -352,7 +352,10 @@ class PagesController extends Controller {
         $hrefImage = $this->config['href_image'];
         require ROOT.'/views/web/pages/contact.php';
     }
-
+    function paiement($controle)
+    {
+        require ROOT.'/views/web/pages/paiement.php';
+    }
 
 
 
