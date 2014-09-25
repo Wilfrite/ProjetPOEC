@@ -63,7 +63,7 @@
 <script src="js/price-range.js"></script>
 <script src="js/jquery.prettyPhoto.js"></script>
 <script src="js/main.js"></script>
-
+<?php var_dump($_SESSION['validation']) ; ?><?php var_dump($_POST) ; ?>
 
 </body>
 </html>
