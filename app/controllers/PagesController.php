@@ -414,17 +414,32 @@ class PagesController extends Controller {
             header("Location:index.php");
             exit();
         }
-        if ($_SESSION['validation']['step'] == 'step_2_confirmed' && empty($_POST) ) // step 2 to step 3
+        if ($_SESSION['validation']['step'] == 'step_2_confirmed'  ) // step 2 to step 3
         {
 
+            $erreur_post = 'paiement';
             $_SESSION['validation']['step'] = 'step_3_confirmed';
-            require ROOT.'/views/web/pages/paiement.php';
+            foreach ($_POST as $val)  {
+                var_dump($val);
+                if (empty($val))
+                {
+
+                    $erreur_post = 'panier&p=valide';
+                    break;
+                }
+
+
+            }
+            $url = $this->url('pages',$erreur_post);
+
+             header("Location:$url");
+            exit();
         }
-       else {
-           $_SESSION['validation']['step'] = 'step_0';
-           header("Location:index.php");
-           exit();
-       }
+        else {
+            $_SESSION['validation']['step'] = 'step_0';
+            header("Location:index.php");
+            exit();
+        }
 
     }
 
