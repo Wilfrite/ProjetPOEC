@@ -402,7 +402,6 @@ class PagesController extends Controller {
 
                 if($isNomValid and $isCBValid and $isVerifValid)
                 {
-                    var_dump($nom, $nb_cb, $mois, $annee, $nb_verif);
                     $_SESSION['validation']['step'] = 'step_4_confirmed';
 
                     $url = $this->url('pages','facture');
@@ -482,8 +481,12 @@ class PagesController extends Controller {
     }
 
     function facture() {
+        $href = $this->config['href'];
+        $hrefImage = $this->config['href_image'];
+        $tva =.2;
         if ($_SESSION['validation']['step'] == 'step_4_confirmed' )  // step 4 checked
         {
+            $panier_courant = $this->articleService->findAllArticlesById(array_keys($_SESSION['panier']));
 
 
 
