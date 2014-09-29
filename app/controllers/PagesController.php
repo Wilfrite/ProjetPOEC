@@ -361,7 +361,8 @@ class PagesController extends Controller {
     function paiement (){
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
-
+        if ($_SESSION['validation']['step'] == 'step_3_confirmed' && !empty($_POST))  // step 3 to step 4
+        {
         // recuperation
         if (isset($_POST['submit_cb_form'])){
 
@@ -385,18 +386,26 @@ class PagesController extends Controller {
                 /*$url = $this->url('pages','facture');
                 header("Location:$url");
                 exit();*/
+                $_SESSION['validation']['step'] = 'step_4_confirmed';
             } else {
                 $this->setFlash("Information Incorect. Le numero de la CB est composer de 16 chiffre et le cryptograme de 3","warning");
             }
         }
 
         require ROOT.'/views/web/pages/paiement.php';
+        }
+        else {
+            $_SESSION['validation']['step'] = 'step_0';
+            header("Location:index.php");
+            exit();
+        }
     }
+
     function validation_to_pay($control)
     {
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
-
+        unset($_SESSION['validation']['client']);
         if ($_SESSION['validation']['step'] == 'step_1_confirmed' && !empty($_POST))  // step 1 to step 2
         {
 
@@ -434,7 +443,10 @@ class PagesController extends Controller {
             }
             else
             {
-
+                $this->setFlash("Information Incorect. L'adresse de livraison est incomplète","warning");
+                $url = $this->url('pages','panier','valide');
+               header("Location:$url");
+               exit();
             }
         }
         else {
@@ -446,9 +458,16 @@ class PagesController extends Controller {
     }
 
     function facture() {
-
+        if ($_SESSION['validation']['step'] == 'step_4_confirmed' )  // step 4 checked
+        {
 
 
         require ROOT.'/views/web/pages/facture.php';
+        }
+        else {
+            $_SESSION['validation']['step'] = 'step_0';
+            header("Location:index.php");
+            exit();
+        }
     }
 }
