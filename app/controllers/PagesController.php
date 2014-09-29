@@ -362,7 +362,7 @@ class PagesController extends Controller {
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
 
-        // recuperation puis modification des informations du profil
+        // recuperation
         if (isset($_POST['submit_cb_form'])){
 
             $nom =filter_var($_POST['nom'],FILTER_SANITIZE_STRING);
@@ -371,16 +371,22 @@ class PagesController extends Controller {
             $nb_cb =filter_var($_POST['nb_cb'],FILTER_SANITIZE_NUMBER_INT);
             $isCBValid = (strlen($nb_cb)>15) ? true : false;
 
-            $date =filter_var($_POST['date'],FILTER_SANITIZE_STRING);
-            //$isDateValid = () ? true : false;
+            $mois = $_POST['mois'];
+            $annee = $_POST['annee'];
 
             $nb_verif =filter_var($_POST['nb_verif'],FILTER_SANITIZE_NUMBER_INT);
             $isVerifValid = (strlen($nb_verif)>2) ? true : false;
 
 
-            if($isNomValid and $isCBValid and $isDateValid and $isVerifValid)
+            if($isNomValid and $isCBValid and $isVerifValid)
             {
+                var_dump($nom, $nb_cb, $mois, $annee, $nb_verif);
 
+                /*$url = $this->url('pages','facture');
+                header("Location:$url");
+                exit();*/
+            } else {
+                $this->setFlash("Information Incorect. Le numero de la CB est composer de 16 chiffre et le cryptograme de 3","warning");
             }
         }
 
@@ -418,5 +424,10 @@ class PagesController extends Controller {
        }
     }
 
+    function facture() {
 
+
+
+        require ROOT.'/views/web/pages/facture.php';
+    }
 }
