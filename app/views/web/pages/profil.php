@@ -8,6 +8,7 @@
                     <div class="shopper-info">
                         <p>Change your mail</p>
                         <form role="form" class="clearfix" method="post">
+                            <!-- on recupère les information de la base sur l'utilisateur connecté -->
                             <input type="email" name="email" id="email" placeholder="email" value="<?php echo isset($viewProfil[0]->adresse_mail) ? $viewProfil[0]->adresse_mail : $_SESSION['email']; ?>">
                             <input type="password" name="motDePasse" id="motDePasse" placeholder="Mot de passe">
                             <button type="submit" name="submit_update_mail_form" class="btn btn-primary" >Modifier</button>
@@ -30,6 +31,7 @@
                         <p>Profil</p>
                         <div class="form-one">
                             <form role="form" class="clearfix" method="post">
+                                <!-- on recupère les information de la base sur l'utilisateur connecté -->
                                 <input type="text" name="prenom" id="prenom" placeholder="Prenom" value="<?php echo isset ($viewProfil[0]) ? $viewProfil[0]->getprenom() : ''; ?>">
                                 <input type="text" name="nom" id="nom" placeholder="Nom" value="<?php echo isset($viewProfil[0]) ? $viewProfil[0]->getnom() :'' ?>">
                                 <input type="text" name="adresse" id="adresse" placeholder="Address" value="<?php echo isset($viewProfil[0]->adresse) ? $viewProfil[0]->adresse : '' ?>">

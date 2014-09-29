@@ -15,6 +15,7 @@ class PagesController extends Controller {
     protected $motCleService;
     protected $utilisateurService;
     protected $profilService;
+    protected $adresseService;
 
     public function __construct(array $config,$dbh) {
         $this->config = $config;
@@ -35,9 +36,12 @@ class PagesController extends Controller {
         $categories = $this->categoriesService->findAllCategories();
         $mot_cles = $this->motCleService->findAllMotCles();
         $id_category = 0;
+
         $ArticlesByMehtod=0;
         if(isset($_GET["cat"]) )
         {
+
+        if(isset($_GET["cat"]) ) {
             $id_category = $_GET["cat"];
             $ArticlesByMehtod = $this->articleService->findByCategory($id_category);
         }
@@ -146,6 +150,7 @@ class PagesController extends Controller {
                 if($sign) {
                     $_SESSION['email'] = $email;
                     $_SESSION['id'] = $sign[0]->getid();
+                    $_SESSION['validation']['step'] = 'step_0';
 
                     $this->setFlash("Succes inscription","success");
                     header ('location: index.php');
@@ -297,9 +302,10 @@ class PagesController extends Controller {
         // passage de validation de panier avec redirection au login  si session  inexistante
         if ($valide== "valide")
         {
-           if ( isset($_SESSION['email']) and !empty($_SESSION['panier']) )
-           {
 
+           if ( isset($_SESSION['email']) and !empty($_SESSION['panier']) ) // step 1
+           {
+               $_SESSION['validation']['step'] = 'step_1_confirmed';
                $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
             require ROOT.'/views/web/pages/validation.php';
            }
@@ -309,6 +315,7 @@ class PagesController extends Controller {
             }
             else if (empty($_SESSION['panier']))
             {
+                $_SESSION['validation']['step'] = 'step_0';
                 header("Location:index.php");
                 exit();
             }
@@ -374,7 +381,97 @@ class PagesController extends Controller {
         require ROOT.'/views/web/pages/contact.php';
     }
 
+    function paiement (){
+        $href = $this->config['href'];
+        $hrefImage = $this->config['href_image'];
+
+        // recuperation
+        if (isset($_POST['submit_cb_form'])){
+
+            $nom =filter_var($_POST['nom'],FILTER_SANITIZE_STRING);
+            $isNomValid = (strlen($nom)>5) ? true : false;
+
+            $nb_cb =filter_var($_POST['nb_cb'],FILTER_SANITIZE_NUMBER_INT);
+            $isCBValid = (strlen($nb_cb)>15) ? true : false;
+
+            $mois = $_POST['mois'];
+            $annee = $_POST['annee'];
+
+            $nb_verif =filter_var($_POST['nb_verif'],FILTER_SANITIZE_NUMBER_INT);
+            $isVerifValid = (strlen($nb_verif)>2) ? true : false;
+
+
+            if($isNomValid and $isCBValid and $isVerifValid)
+            {
+                var_dump($nom, $nb_cb, $mois, $annee, $nb_verif);
+
+                /*$url = $this->url('pages','facture');
+                header("Location:$url");
+                exit();*/
+            } else {
+                $this->setFlash("Information Incorect. Le numero de la CB est composer de 16 chiffre et le cryptograme de 3","warning");
+            }
+        }
+
+        require ROOT.'/views/web/pages/paiement.php';
+    }
+    function validation_to_pay($control)
+    {
+        $href = $this->config['href'];
+        $hrefImage = $this->config['href_image'];
+
+        if ($_SESSION['validation']['step'] == 'step_1_confirmed' && !empty($_POST))  // step 1 to step 2
+        {
+
+
+                $_SESSION['validation']['client']['prenom'] =filter_var($_POST['prenom_commande'],FILTER_SANITIZE_STRING);
+                $_SESSION['validation']['client']['nom'] =filter_var($_POST['nom_commande'],FILTER_SANITIZE_STRING);
+                $_SESSION['validation']['client']['adresse'] =filter_var($_POST['adresse_commande'],FILTER_SANITIZE_STRING);
+                $_SESSION['validation']['client']['codePostal'] =filter_var($_POST['codePostal_commande'],FILTER_SANITIZE_STRING);
+                $_SESSION['validation']['client']['ville'] =filter_var($_POST['ville_commande'],FILTER_SANITIZE_STRING);
+
+                $_SESSION['validation']['step'] = 'step_2_confirmed';
+
+        }
+        else {
+            $_SESSION['validation']['step'] = 'step_0';
+            header("Location:index.php");
+            exit();
+        }
+        if ($_SESSION['validation']['step'] == 'step_2_confirmed'  ) // step 2 to step 3
+        {
+            $adresse_vide =null;
+            foreach ($_POST as $var_adresse)
+            {
+                if (empty($var_adresse))
+                {
+
+                     $adresse_vide ++ ;
+                }
+            }
+
+            if (is_null($adresse_vide))
+            {
+                $_SESSION['validation']['step'] = 'step_3_confirmed';
+                require ROOT.'/views/web/pages/paiement.php';
+            }
+            else
+            {
+
+            }
+        }
+        else {
+            $_SESSION['validation']['step'] = 'step_0';
+            header("Location:index.php");
+            exit();
+        }
+
+    }
+
+    function facture() {
 
 
 
+        require ROOT.'/views/web/pages/facture.php';
+    }
 }

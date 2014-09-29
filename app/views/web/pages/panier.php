@@ -144,7 +144,9 @@
                         </ul>
 <!--                        <a class="btn btn-default update" href="">Update</a>-->
 <!--                        bouton dynamique selon condition de connection ou de panier vide -->
-                        <a class="btn btn-default check_out" href="<?php echo isset($_SESSION['email'])  && !empty($_SESSION['panier']) ? $this->url('pages','panier','valide')."\">Valider le panier" : (isset($_SESSION['email'])  && empty($_SESSION['panier']) ? $this->url('pages','index')."\">Votre panier est vide" : $this->url('pages','login')."\">Veuillez vous connectez") ;?>"</a>
+                        <a class="btn btn-default check_out" href="
+
+                        <?php echo isset($_SESSION['email'])  && !empty($_SESSION['panier']) ? $this->url('pages','panier','valide')."\">"."Valider le panier" : (isset($_SESSION['email'])  && empty($_SESSION['panier']) ? $this->url('pages','index'). "\">" ."Votre panier est vide" : $this->url('pages','login')."\">"."Veuillez vous connectez") ;?></a>
                     </div>
                 </div>
             </div>
