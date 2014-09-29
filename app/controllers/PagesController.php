@@ -508,4 +508,9 @@ class PagesController extends Controller {
 
     require ROOT.'/views/web/pages/facture.php';
     }
+    function registerOrder()
+    {
+//        $adresse_livraison ,$cp_livraison , $cp_livraison , $ville_livraison , $adresse_facturation , $cp_facturation ,$ville_facturation , $id_user, $array
+
+    }
 }
