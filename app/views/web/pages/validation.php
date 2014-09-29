@@ -145,7 +145,7 @@
                                     <input type="text" name="codePostal" id="codePostal" placeholder="Code Postal" value="<?php echo isset( $viewProfil[0]->cp) ? $viewProfil[0]->cp : ''; ?>">
                                     <input type="text" name="ville" id="ville" placeholder="Ville" value="<?php echo isset($viewProfil[0]->ville) ? $viewProfil[0]->ville : ''; ?>">
 
-                                    <button type="submit" name="submit_take_first_adress" class="btn btn-primary" >use it</button></form>
+                                    <button type="submit"  class="btn btn-primary" >use it</button></form>
                             </div>
 
                             <div class="form-two">
@@ -156,7 +156,7 @@
                                     <input type="text" name="adresse" id="adresse2" placeholder="Address" value="">
                                     <input type="text" name="codePostal" id="codePostal2" placeholder="Code Postal" value="">
                                     <input type="text" name="ville" id="ville2" placeholder="Ville" value="">
-                                    <button type="submit" name="submit_take_second_adress" class="btn btn-primary" >use it</button>
+                                    <button type="submit"  class="btn btn-primary" >use it</button>
                                 </form>
                             </div>
                         </div>
