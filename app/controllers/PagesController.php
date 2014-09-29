@@ -392,13 +392,13 @@ class PagesController extends Controller {
                 $isNomValid = (strlen($nom)>5) ? true : false;
 
                 $nb_cb =filter_var($_POST['nb_cb'],FILTER_SANITIZE_NUMBER_INT);
-                $isCBValid = (strlen($nb_cb)>15) ? true : false;
+                $isCBValid = (strlen($nb_cb)==16) ? true : false;
 
                 $mois = $_POST['mois'];
                 $annee = $_POST['annee'];
 
                 $nb_verif =filter_var($_POST['nb_verif'],FILTER_SANITIZE_NUMBER_INT);
-                $isVerifValid = (strlen($nb_verif)>2) ? true : false;
+                $isVerifValid = (strlen($nb_verif)==3) ? true : false;
 
                 if($isNomValid and $isCBValid and $isVerifValid)
                 {
