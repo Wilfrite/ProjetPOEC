@@ -496,7 +496,8 @@ class PagesController extends Controller {
         if ($_SESSION['validation']['step'] == 'step_4_confirmed' )  // step 4 checked
         {
             $panier_courant = $this->articleService->findAllArticlesById(array_keys($_SESSION['panier']));
-
+            $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
+            var_dump($_SESSION);
 
 
         }

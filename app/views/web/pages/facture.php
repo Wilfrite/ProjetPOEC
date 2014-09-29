@@ -52,20 +52,20 @@
                 <div class="col-sm-4">
                     <div class="total_area">
                         <ul>
-                            <li>Sous-total hors taxe<span><?php echo $total_panier ; ?> €</span></li>
-                            <li>Montant TVA<span><?php echo $montant_tva = $total_panier * $tva;   ?> €</span></li>
-                            <li>Frais de port <span>Gratuit</span></li>
-                            <li>Total <span><?php echo $totalglobal = $total_panier + $montant_tva; ?> €</span></li>
+                            <li>Adresse de Facturation</li>
+                            <li>Adresse :<span><?php echo isset($viewProfil[0]->adresse) ? $viewProfil[0]->adresse : '' ?></span></li>
+                            <li>Code Postal :<span><?php echo isset( $viewProfil[0]->cp) ? $viewProfil[0]->cp : ''; ?></span></li>
+                            <li>Ville :<span><?php echo isset($viewProfil[0]->ville) ? $viewProfil[0]->ville : ''; ?></span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="total_area">
                         <ul>
-                            <li>Sous-total hors taxe<span><?php echo $total_panier ; ?> €</span></li>
-                            <li>Montant TVA<span><?php echo $montant_tva = $total_panier * $tva;   ?> €</span></li>
-                            <li>Frais de port <span>Gratuit</span></li>
-                            <li>Total <span><?php echo $totalglobal = $total_panier + $montant_tva; ?> €</span></li>
+                            <li>Adresse de Livraison</li>
+                            <li>Adresse :<span><?php echo (isset($_SESSION['validation']['client']->adresse)) ? $_SESSION['validation']['client']->adresse : '' ?></span></li>
+                            <li>Code Postal :<span><?php echo isset($_SESSION['validation']['client']->cp) ? $_SESSION['validation']['client']->cp : ''; ?></span></li>
+                            <li>Ville :<span><?php echo isset($_SESSION['validation']['client']->ville) ? $_SESSION['validation']['client']->ville : ''; ?></span></li>
                         </ul>
                     </div>
                 </div>
