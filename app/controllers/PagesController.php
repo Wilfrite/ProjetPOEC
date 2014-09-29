@@ -38,15 +38,17 @@ class PagesController extends Controller {
         $id_category = 0;
         $ArticlesByMehtod=0;
 
+        // Affiche par default les dernieres nouveauté
+        $ArticlesByMehtod = $this->articleService->findAllArticles();
+
+        //tri par categorie
         if(isset($_GET["cat"]) )
         {
             $id_category = $_GET["cat"];
             $ArticlesByMehtod = $this->articleService->findByCategory($id_category);
         }
-        else {
-            $ArticlesByMehtod = $this->articleService->findAllArticles();
-        }
 
+        //tri par mot clé
         $id_mot_cle = 0;
         if(isset($_GET["mot"]) )
         {
@@ -54,8 +56,11 @@ class PagesController extends Controller {
             $ArticlesByMehtod = $this->articleService->findByMotCle($id_mot_cle);
         }
 
+        //tri Multi Critére
         if ((isset($_GET["cat"])) && (isset($_GET["mot"])))
         {
+
+            // Si different de nouveauté
             if  ($_GET["cat"] != 0)
             {
             $id_mot_cle = $_GET["mot"];
@@ -73,7 +78,11 @@ class PagesController extends Controller {
         {
             require ROOT.'/views/web/pages/error404.php';
         }
-        require ROOT .'/views/web/pages/home.php';
+        else
+        {
+            require ROOT .'/views/web/pages/home.php';
+        }
+
     }
 
 
