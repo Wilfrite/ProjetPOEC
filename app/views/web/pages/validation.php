@@ -133,7 +133,7 @@
                             <!--                <a class="btn btn-primary" href="">Continue</a>-->
                         </div>
                     </div>
-                    <div class="col-sm-5 clearfix">
+                    <div class="col-sm-9 clearfix">
                         <div class="bill-to">
 
                             <div class="form-one">
@@ -145,7 +145,7 @@
                                     <input type="text" name="codePostal" id="codePostal" placeholder="Code Postal" value="<?php echo isset( $viewProfil[0]->cp) ? $viewProfil[0]->cp : ''; ?>">
                                     <input type="text" name="ville" id="ville" placeholder="Ville" value="<?php echo isset($viewProfil[0]->ville) ? $viewProfil[0]->ville : ''; ?>">
 
-                                    <button type="submit" name="submit_take_first_adress" class="btn btn-primary" >useit</button></form>
+                                    <button type="submit" name="submit_take_first_adress" class="btn btn-primary" >use it</button></form>
                             </div>
 
                             <div class="form-two">
@@ -160,13 +160,8 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="order-message">
-                            <p>Compléments de livraison</p>
-                            <textarea name="message"  placeholder="Informations à transmettre à la société de livraison (code d'accès à la résidence, ...)" rows="16"></textarea>
-                            <label><input type="checkbox"> Shipping to bill address</label>
-                        </div>
+
+
                     </div>
                 </div>
             </div>

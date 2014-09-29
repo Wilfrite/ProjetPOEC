@@ -397,13 +397,21 @@ class PagesController extends Controller {
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
 
-        if ($_SESSION['validation']['step'] == 'step_1_confirmed')  // step 1 to step 2
+        if ($_SESSION['validation']['step'] == 'step_1_confirmed' && !empty($_POST))  // step 1 to step 2
         {
             if ($control == 'first_adress') {
                 $_SESSION['validation']['client'] = $_POST;
                 $_SESSION['validation']['step'] = 'step_2_confirmed';
             } elseif ($control == 'second_adress') {
-                $_SESSION['validation']['client'] = $_POST;
+
+                $_SESSION['validation']['client']['prenom'] =filter_var($_POST['prenom'],FILTER_SANITIZE_STRING);
+                $_SESSION['validation']['client']['nom'] =filter_var($_POST['nom'],FILTER_SANITIZE_STRING);
+                $_SESSION['validation']['client']['adresse'] =filter_var($_POST['adresse'],FILTER_SANITIZE_STRING);
+                $_SESSION['validation']['client']['codePostal'] =filter_var($_POST['codePostal'],FILTER_SANITIZE_STRING);
+                $_SESSION['validation']['client']['ville'] =filter_var($_POST['ville'],FILTER_SANITIZE_STRING);
+
+
+        //        $_SESSION['validation']['client'] = $_POST;
                 $_SESSION['validation']['step'] = 'step_2_confirmed';
             }
         }
@@ -412,16 +420,33 @@ class PagesController extends Controller {
             header("Location:index.php");
             exit();
         }
-        if ($_SESSION['validation']['step'] == 'step_2_confirmed' ) // step 2 to step 3
+        if ($_SESSION['validation']['step'] == 'step_2_confirmed'  ) // step 2 to step 3
         {
+
+            $erreur_post = 'paiement';
             $_SESSION['validation']['step'] = 'step_3_confirmed';
-            require ROOT.'/views/web/pages/paiement.php';
+            foreach ($_POST as $val)  {
+                var_dump($val);
+                if (empty($val))
+                {
+
+                    $erreur_post = 'panier&p=valide';
+                    break;
+                }
+
+
+            }
+            $url = $this->url('pages',$erreur_post);
+
+             header("Location:$url");
+            exit();
         }
-       else {
-           $_SESSION['validation']['step'] = 'step_0';
-           header("Location:index.php");
-           exit();
-       }
+        else {
+            $_SESSION['validation']['step'] = 'step_0';
+            header("Location:index.php");
+            exit();
+        }
+
     }
 
     function facture() {

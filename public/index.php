@@ -33,9 +33,11 @@ $params= isset($_GET['p'])? $_GET['p'] : null;
 switch(isset($_GET['a'])? $_GET['a'] : 'index')
 {
     case 'index' :
+        $_SESSION['validation']['step'] = 'step_1_confirmed';
         $pagesController->index();
         break;
     case 'article' :
+        $_SESSION['validation']['step'] = 'step_1_confirmed';
         $pagesController->detailArticle($params);
         break;
     case 'login' :
@@ -45,15 +47,11 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
         $pagesController->deconnexion();
         break;
     case 'profil' :
+        $_SESSION['validation']['step'] = 'step_1_confirmed';
         $pagesController->profil();
         break;
-    /* case 'comment' :
-        $pagesController->comment($id_post);
-        break;
-    case 'about' :
-        $pagesController->about();
-        break;*/
     case 'contact' :
+        $_SESSION['validation']['step'] = 'step_1_confirmed';
         $pagesController->contact();
         break;
     case 'error404' :
@@ -69,7 +67,7 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
         $pagesController->paiement();
         break;
     case 'panier' :
-    $pagesController->panier($params);
+        $pagesController->panier($params);
         break;
     case 'validation_to_pay' :
         $pagesController->validation_to_pay($params);
