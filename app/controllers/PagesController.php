@@ -382,44 +382,45 @@ class PagesController extends Controller {
     function paiement (){
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
-        if ($_SESSION['validation']['step'] == 'step_3_confirmed' && !empty($_POST))  // step 3 to step 4
+
+        if ($_SESSION['validation']['step'] == 'step_3_confirmed' )  // step 3 to step 4
         {
-        // recuperation
-        if (isset($_POST['submit_cb_form'])){
+            // recuperation
+            if (isset($_POST['submit_cb_form'])){
 
-            $nom =filter_var($_POST['nom'],FILTER_SANITIZE_STRING);
-            $isNomValid = (strlen($nom)>5) ? true : false;
+                $nom =filter_var($_POST['nom'],FILTER_SANITIZE_STRING);
+                $isNomValid = (strlen($nom)>5) ? true : false;
 
-            $nb_cb =filter_var($_POST['nb_cb'],FILTER_SANITIZE_NUMBER_INT);
-            $isCBValid = (strlen($nb_cb)>15) ? true : false;
+                $nb_cb =filter_var($_POST['nb_cb'],FILTER_SANITIZE_NUMBER_INT);
+                $isCBValid = (strlen($nb_cb)>15) ? true : false;
 
-            $mois = $_POST['mois'];
-            $annee = $_POST['annee'];
+                $mois = $_POST['mois'];
+                $annee = $_POST['annee'];
 
-            $nb_verif =filter_var($_POST['nb_verif'],FILTER_SANITIZE_NUMBER_INT);
-            $isVerifValid = (strlen($nb_verif)>2) ? true : false;
+                $nb_verif =filter_var($_POST['nb_verif'],FILTER_SANITIZE_NUMBER_INT);
+                $isVerifValid = (strlen($nb_verif)>2) ? true : false;
 
+                if($isNomValid and $isCBValid and $isVerifValid)
+                {
+                    var_dump($nom, $nb_cb, $mois, $annee, $nb_verif);
+                    $_SESSION['validation']['step'] = 'step_4_confirmed';
 
-            if($isNomValid and $isCBValid and $isVerifValid)
-            {
-                var_dump($nom, $nb_cb, $mois, $annee, $nb_verif);
+                    $url = $this->url('pages','facture');
+                    header("Location:$url");
+                    exit();
 
-                /*$url = $this->url('pages','facture');
-                header("Location:$url");
-                exit();*/
-                $_SESSION['validation']['step'] = 'step_4_confirmed';
-            } else {
-                $this->setFlash("Information Incorect. Le numero de la CB est composer de 16 chiffre et le cryptograme de 3","warning");
+                } else {
+                    $this->setFlash("Information Incorect. Le numero de la CB est composer de 16 chiffre et le cryptograme de 3","warning");
+                }
             }
-        }
-
-        require ROOT.'/views/web/pages/paiement.php';
         }
         else {
             $_SESSION['validation']['step'] = 'step_0';
             header("Location:index.php");
             exit();
         }
+
+        require ROOT.'/views/web/pages/paiement.php';
     }
 
     function validation_to_pay($control)
@@ -460,7 +461,9 @@ class PagesController extends Controller {
             if (is_null($adresse_vide))
             {
                 $_SESSION['validation']['step'] = 'step_3_confirmed';
-                require ROOT.'/views/web/pages/paiement.php';
+                $url = $this->url('pages','paiement');
+                header("Location:$url");
+                exit();
             }
             else
             {
@@ -483,12 +486,14 @@ class PagesController extends Controller {
         {
 
 
-        require ROOT.'/views/web/pages/facture.php';
+
         }
         else {
             $_SESSION['validation']['step'] = 'step_0';
             header("Location:index.php");
             exit();
         }
+
+    require ROOT.'/views/web/pages/facture.php';
     }
 }
