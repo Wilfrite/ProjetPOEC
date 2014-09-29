@@ -58,7 +58,6 @@
 
 
 
-<?php var_dump($_SESSION['validation']) ; ?>
 
 
 </body>
