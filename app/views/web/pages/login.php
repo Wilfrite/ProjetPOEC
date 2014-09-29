@@ -16,7 +16,7 @@
                 <div class="col-sm-1">
                     <h2 class="or">OR</h2>
                 </div>
-                <div class="col-sm-4">
+                    <div class="col-sm-4">
                     <div class="signup-form"><!--sign up form-->
                         <h2>New User Signup!</h2>
                         <form role="form" class="clearfix" method="post" action="<?php echo $this->url('pages', 'login'); ?>">

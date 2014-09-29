@@ -103,6 +103,55 @@ class ArticleService {
         return (isset($result) ? $result : null);
     }
 
+    public function  findBySearch($id_category,$id_mot_cle)
+    {
+        try {
+            // Sélection des données
+            $sql = "SELECT `article`.`id` , `article`.`nom` , `image` , `description` , `etat` , `date_edition` , `editeur` , `auteur` , `seuil` , `quantite_stock` , `prix` , `id_categorie` , `mot_cle`.`id` AS id_mot_cle, `mot_cle`.`nom` AS nom_mot_cle, `categorie`.`nom` AS nom_category
+            FROM `article_mot_cle`
+            JOIN `article` ON `article`.`id` = `article_mot_cle`.`id_article`
+            JOIN `mot_cle` ON `mot_cle`.`id` = `article_mot_cle`.`id`
+            JOIN `categorie` ON `categorie`.`id` = `article`.`id_categorie`
+            WHERE `mot_cle`.`id` =:mot_cle
+            AND  `categorie`.`id`=:category";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute([
+                    ':category' => $id_category,
+                    ':mot_cle' => $id_mot_cle
+                ]);
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
+            $stmt->closeCursor();
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+
+        return (isset($result) ? $result : null);
+    }
+
+    public function  findBySearchWithNews($id_mot_cle)
+    {
+        try {
+            // Sélection des données
+            $sql = "SELECT `article`.`id` , `article`.`nom` , `image` , `description` , `etat` , `date_edition` , `editeur` , `auteur` , `seuil` , `quantite_stock` , `prix` , `id_categorie` , `mot_cle`.`id` AS id_mot_cle, `mot_cle`.`nom` AS nom_mot_cle, `categorie`.`nom` AS nom_category
+            FROM `article_mot_cle`
+            JOIN `article` ON `article`.`id` = `article_mot_cle`.`id_article`
+            JOIN `mot_cle` ON `mot_cle`.`id` = `article_mot_cle`.`id`
+            JOIN `categorie` ON `categorie`.`id` = `article`.`id_categorie`
+            WHERE `mot_cle`.`id` =:mot_cle
+            AND `article`.etat = 'Nouveauté'" ;
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute([
+                    ':mot_cle' => $id_mot_cle
+                ]);
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");;
+            $stmt->closeCursor();
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+
+        return (isset($result) ? $result : null);
+    }
+
 }
 
 
