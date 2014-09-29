@@ -106,7 +106,7 @@
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="index.php">Nouveauté</a></li>
                                     <li><a href="<?php echo $this->url('pages','panier');?>">Panier</a></li>
-                                    <li><a href="<?php echo $this->url('pages','login');?>">Connexion</a></li>
+                                    <li><a href="<?php echo isset($_SESSION['email']) ? $this->url('pages','deconnexion') : $this->url('pages','login') ;?>"><?php echo isset($_SESSION['email']) ? ' Déconnexion' : ' Connexion' ;?></a></li>
                                 </ul>
                             </li>
                             <li><a href="<?php echo $this->url('pages','contact');?>">Contact</a></li>
