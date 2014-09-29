@@ -113,7 +113,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="">
+                <div  style="display:<?php echo isset($_GET['a']) ?(($_GET['a'] == 'index') || ($_GET['a'] == 'article') || ($_GET['a'] == null)) ? 'block' : 'none' : 'block' ;?>">
                     <div class="col-sm-2">
                         <select id="categorie">
                             <option value="Nouveauté">Nouveauté</option>
