@@ -36,12 +36,10 @@ class PagesController extends Controller {
         $categories = $this->categoriesService->findAllCategories();
         $mot_cles = $this->motCleService->findAllMotCles();
         $id_category = 0;
-
         $ArticlesByMehtod=0;
+
         if(isset($_GET["cat"]) )
         {
-
-        if(isset($_GET["cat"]) ) {
             $id_category = $_GET["cat"];
             $ArticlesByMehtod = $this->articleService->findByCategory($id_category);
         }
