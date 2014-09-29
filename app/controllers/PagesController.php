@@ -37,6 +37,10 @@ class PagesController extends Controller {
         $mot_cles = $this->motCleService->findAllMotCles();
         $id_category = 0;
 
+        $ArticlesByMehtod=0;
+        if(isset($_GET["cat"]) )
+        {
+
         if(isset($_GET["cat"]) ) {
             $id_category = $_GET["cat"];
             $ArticlesByMehtod = $this->articleService->findByCategory($id_category);
@@ -46,12 +50,31 @@ class PagesController extends Controller {
         }
 
         $id_mot_cle = 0;
-        if(isset($_GET["mot"]) ) {
+        if(isset($_GET["mot"]) )
+        {
             $id_mot_cle = $_GET["mot"];
             $ArticlesByMehtod = $this->articleService->findByMotCle($id_mot_cle);
         }
 
+        if ((isset($_GET["cat"])) && (isset($_GET["mot"])))
+        {
+            if  ($_GET["cat"] != 0)
+            {
+            $id_mot_cle = $_GET["mot"];
+            $id_category = $_GET["cat"];
+            $ArticlesByMehtod = $this->articleService->findBySearch($id_category,$id_mot_cle);
+            }
+            else
+            {
+                $id_mot_cle = $_GET["mot"];
+                $ArticlesByMehtod = $this->articleService->findBySearchWithNews($id_mot_cle);
+            }
+        }
 
+        if ($ArticlesByMehtod == null)
+        {
+            require ROOT.'/views/web/pages/error404.php';
+        }
         require ROOT .'/views/web/pages/home.php';
     }
 

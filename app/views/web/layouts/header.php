@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,6 +26,15 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/price-range.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/main.js"></script>
+
 
 </head><!--/head-->
 
@@ -81,7 +90,7 @@
     <div class="header-bottom"><!--header-bottom-->
         <div class="container">
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-sm-6">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -104,14 +113,46 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="search_box pull-right">
-                        <input type="text" placeholder="Recherche"/>
+                <div class="">
+                    <div class="col-sm-2">
+                        <select id="categorie">
+                            <option value="Nouveauté">Nouveauté</option>
+                            <?php foreach ($categories as $category) : ?>
+                                <option value="<?php  echo $category->getid(); ?>"><?php  echo $category->getnom(); ?></option>
+                            <?php endforeach ?>
+                        </select>
                     </div>
+                    <div class="col-sm-2">
+                        <select id="mot_cle">
+                            <?php foreach ($mot_cles as $mot_cle) : ?>
+                                <option value="<?php  echo $mot_cle->getid(); ?>"><?php  echo $mot_cle->getnom(); ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                    <button id="submit_search" class="btn btn-default" >Rechercher</button>
+                   </div>
                 </div>
             </div>
         </div>
     </div><!--/header-bottom-->
+
+    <script>
+        $(document).ready(function()
+         {
+         $("#submit_search").click(function(){
+             var categorie = $('#categorie option:selected').val();
+             var mot_cle=$('#mot_cle option:selected').val(); ;
+             if ($('#categorie option:selected').val()=='Nouveauté')
+             {
+                 categorie = 0;
+             }
+             var url = 'index.php?cat='+categorie+'&mot='+mot_cle;
+             window.location.href=url;
+         })
+         });
+    </script>
+
     <?php if ($flash = $this->flash()) { ?>
         <div class="alert alert-<?php echo $flash['type']; ?> role="alert" ><?php echo $flash['message']; ?></div>
     <?php } ?>
