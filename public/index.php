@@ -50,12 +50,6 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
         $_SESSION['validation']['step'] = 'step_1_confirmed';
         $pagesController->profil();
         break;
-    /* case 'comment' :
-        $pagesController->comment($id_post);
-        break;
-    case 'about' :
-        $pagesController->about();
-        break;*/
     case 'contact' :
         $_SESSION['validation']['step'] = 'step_1_confirmed';
         $pagesController->contact();
@@ -77,6 +71,9 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
         break;
     case 'validation_to_pay' :
         $pagesController->validation_to_pay($params);
+        break;
+    case 'facture' :
+        $pagesController->facture();
         break;
 
     default:
