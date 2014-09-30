@@ -192,6 +192,7 @@ class PagesController extends Controller {
     {
         $href = $this->config['href'];
         $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
+        $viewOrder = $this->commandeService->selectListOrders($_SESSION['id']);
 
         // recuperation puis modification des informations du profil
         if (isset($_POST['submit_update_profil_form'])){
