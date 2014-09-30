@@ -47,7 +47,7 @@
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
                             <li><a href="#"><i class="fa fa-phone"></i> +31 8 36 65 65 65 </a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> bgates@apple.com</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i>info@poecstore.com</a></li>
                         </ul>
                     </div>
                 </div>
