@@ -499,7 +499,7 @@ class PagesController extends Controller {
             $panier_courant = $this->articleService->findAllArticlesById(array_keys($_SESSION['panier']));
             $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
             $n_commande = $lastId;
-            
+
 
 
         }

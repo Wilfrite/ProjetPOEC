@@ -57,13 +57,41 @@ class CommandeService {
 
     }
 
-    public function selectOrder()
+    public function selectOrder($id_commande, $id_user)
     {
-
+        try {
+            // Sélection des données
+            $sql = "SELECT  `commande`.`id`,  `commande`.`statut`,  `commande`.`date_commande`,  `commande`.`date_reception`,  `commande`.`adrersse_livraison`,  `commande`.`cp_livraison`,  `commande`.`ville_livraison`,  `commande`.`adrersse_facturation`,  `commande`.`cp_facturation`,  `commande`.`ville_facturation`,  `commande`.`id_utilisateur`
+            FROM `commande`
+            JOIN `article_commande` ON `commande`.`id` = `article_commande`.`id_commande`
+            WHERE `commande`.`id_utilisateur` = :id_utilisateur AND `commande`.`id` = :id_commande";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute([
+                    ':id_commande' =>$id_commande,
+                    ':id_utilisateur' =>$id_user,
+                ]);
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Commande");
+            $stmt->closeCursor();
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+        return (isset($result) ? $result : null);
     }
 
-    public function selectListOrders()
+    public function selectListOrders($id_utilisateur)
     {
-
+        try {
+            // Sélection des données
+            $sql = "SELECT `commande`.`id`, `commande`.`statut`, `commande`.`date_commande`,  `commande`.`id_utilisateur`
+            FROM `commande`
+            WHERE `commande`.`id_utilisateur` = ?";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute(array($id_utilisateur));
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Commande");
+            $stmt->closeCursor();
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+        return (isset($result) ? $result : null);
     }
 }
