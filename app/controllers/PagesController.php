@@ -490,7 +490,7 @@ class PagesController extends Controller {
 
     }
 
-    function facture() {
+    function facture($lastId) {
         $href = $this->config['href'];
         $hrefImage = $this->config['href_image'];
         $tva =.2;
@@ -498,7 +498,7 @@ class PagesController extends Controller {
         {
             $panier_courant = $this->articleService->findAllArticlesById(array_keys($_SESSION['panier']));
             $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
-            var_dump($_SESSION);
+
 
 
         }
@@ -512,7 +512,7 @@ class PagesController extends Controller {
     }
     function registerOrder()
     {
-//        $adresse_livraison ,$cp_livraison , $ville_livraison , $adresse_facturation , $cp_facturation ,$ville_facturation , $id_user, $array
+
         $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
 
         $id_user = $_SESSION['id'];
@@ -524,14 +524,22 @@ class PagesController extends Controller {
         $adresse_facturation = $_SESSION['validation']['client']['adresse'];
         $cp_facturation = $_SESSION['validation']['client']['codePostal'];
         $ville_facturation = $_SESSION['validation']['client']['ville'];
-//        if ($adresse_livraison == null or $cp_livraison == null or $ville_livraison == null or $adresse_facturation  == null or $cp_facturation == null or $ville_facturation  == null) {
-// //$this->createOrder( $adresse_livraison ,$cp_livraison , $ville_livraison , $adresse_facturation , $cp_facturation ,$ville_facturation , $id_user, $array);
-//        unset ( $_SESSION['validation']);
-//        unset ( $_SESSION['panier']);
-//        }
+        if ($adresse_livraison == null or $cp_livraison == null or $ville_livraison == null or $adresse_facturation  == null or $cp_facturation == null or $ville_facturation == null or $id_user == null )
+        {
+            $this->setFlash("Un problème a eu lieu lors de votre commande.","warning");
+            $url = $this->url('pages','panier');
+            header("Location:$url");
+            exit();
+        }
+        else
+        {
 
-        $this->facture();
+            $lastId = $this->commandeService->createOrder( $adresse_livraison ,$cp_livraison , $ville_livraison , $adresse_facturation , $cp_facturation ,$ville_facturation , $id_user, $_SESSION['panier']);
 
+            $this->facture($lastId);
+            unset ( $_SESSION['validation']['client']);
+            unset ( $_SESSION['panier']);
+        }
 
     }
 }

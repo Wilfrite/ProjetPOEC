@@ -19,14 +19,13 @@ class CommandeService {
 
             $sql = "INSERT INTO `article_commande`(`quantite`, `id`, `id_commande`) VALUES (:quantite,:id,:id_commande)";
             $stmt = $this->dbh->prepare($sql);
-            foreach ($array as $link)
+            foreach ($array as $key =>$link)
             {
 
                 $stmt->execute([
                         ':quantite' => $link,
-                        ':id' =>  key($link),
+                        ':id' => $key,
                         ':id_commande' =>$id_commande
-                        
                     ]);
             }
         } catch (PDOException $e) {
@@ -49,7 +48,7 @@ class CommandeService {
                     ':ville_facturation' =>$ville_facturation,
                     ':id_utilisateur' =>$id_user,
                 ]);
-           $result = $stmt->lastInsertId();
+           $result = $this->dbh->lastInsertId();
         } catch (PDOException $e) {
             die('Erreur : ' . $e->getMessage());
         }
