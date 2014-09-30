@@ -498,7 +498,7 @@ class PagesController extends Controller {
         {
             $panier_courant = $this->articleService->findAllArticlesById(array_keys($_SESSION['panier']));
             $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
-            var_dump($_SESSION);
+
 
 
         }

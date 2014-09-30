@@ -2,6 +2,8 @@
 
     <section id="cart_items">
         <div class="container">
+            <h1>Commande validée</h1>
+            <p><h2>Resumé de votre commande :</h2></p>
             <div class="table-responsive cart_info">
                 <table class="table table-condensed">
                     <thead>
@@ -53,7 +55,9 @@
                     <div class="total_area">
                         <ul>
                             <li>Adresse de Facturation</li>
-                            <li>Adresse :<span><?php echo isset($viewProfil[0]->adresse) ? $viewProfil[0]->adresse : '' ?></span></li>
+                            <li>Nom :<span><?php echo isset ($viewProfil[0]) ? $viewProfil[0]->getnom() : ''; ?></span></li>
+                            <li>Prenom :<span><?php echo isset ($viewProfil[0]) ? $viewProfil[0]->getprenom() : ''; ?></span></li>
+                            <li>Adresse :<span><?php echo isset($viewProfil[0]->adresse) ? $viewProfil[0]->adresse : ''; ?></span></li>
                             <li>Code Postal :<span><?php echo isset( $viewProfil[0]->cp) ? $viewProfil[0]->cp : ''; ?></span></li>
                             <li>Ville :<span><?php echo isset($viewProfil[0]->ville) ? $viewProfil[0]->ville : ''; ?></span></li>
                         </ul>
@@ -63,7 +67,9 @@
                     <div class="total_area">
                         <ul>
                             <li>Adresse de Livraison</li>
-                            <li>Adresse :<span><?php echo isset($_SESSION['validation']['client']['adresse']) ? $_SESSION['validation']['client']['adresse'] : '' ?></span></li>
+                            <li>Nom :<span><?php echo isset ($_SESSION['validation']['client']['nom']) ? $_SESSION['validation']['client']['nom'] : ''; ?></span></li>
+                            <li>Prenom :<span><?php echo isset ($_SESSION['validation']['client']['prenom']) ? $_SESSION['validation']['client']['prenom'] : ''; ?></span></li>
+                            <li>Adresse :<span><?php echo isset($_SESSION['validation']['client']['adresse']) ? $_SESSION['validation']['client']['adresse'] : ''; ?></span></li>
                             <li>Code Postal :<span><?php echo isset($_SESSION['validation']['client']['codePostal']) ? $_SESSION['validation']['client']['codePostal'] : ''; ?></span></li>
                             <li>Ville :<span><?php echo isset($_SESSION['validation']['client']['ville']) ? $_SESSION['validation']['client']['ville'] : ''; ?></span></li>
                         </ul>
@@ -79,6 +85,11 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="container text-center">
+            <div class="content-404">
+                <h2><a href="index.php">Retourner à l'accueil.</a></h2>
             </div>
         </div>
     </section>
