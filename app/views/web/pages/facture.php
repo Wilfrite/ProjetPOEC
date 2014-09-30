@@ -3,7 +3,7 @@
     <section id="cart_items">
         <div class="container">
             <h1>Commande validée</h1>
-            <p><h2>Resumé de votre commande : <?php echo isset ($n_commande) ? $n_commande : ''; ?></h2></p>
+            <p><h2>Resumé de votre commande : (numéro de commande :  <?php echo isset ($n_commande) ? $n_commande : ''; ?> )</h2></p>
             <div class="table-responsive cart_info">
                 <table class="table table-condensed">
                     <thead>
