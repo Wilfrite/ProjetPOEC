@@ -56,4 +56,14 @@ class CommandeService {
         return (isset($result) ? $result : null);
 
     }
+
+    public function selectOrder()
+    {
+
+    }
+
+    public function selectListOrders()
+    {
+
+    }
 }

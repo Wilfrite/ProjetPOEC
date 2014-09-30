@@ -498,7 +498,8 @@ class PagesController extends Controller {
         {
             $panier_courant = $this->articleService->findAllArticlesById(array_keys($_SESSION['panier']));
             $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
-
+            $n_commande = $lastId;
+            
 
 
         }
@@ -535,10 +536,10 @@ class PagesController extends Controller {
         {
 
             $lastId = $this->commandeService->createOrder( $adresse_livraison ,$cp_livraison , $ville_livraison , $adresse_facturation , $cp_facturation ,$ville_facturation , $id_user, $_SESSION['panier']);
-
-            $this->facture($lastId);
             unset ( $_SESSION['validation']['client']);
             unset ( $_SESSION['panier']);
+            $this->facture($lastId);
+
         }
 
     }
