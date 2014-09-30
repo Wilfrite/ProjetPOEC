@@ -63,9 +63,9 @@
                     <div class="total_area">
                         <ul>
                             <li>Adresse de Livraison</li>
-                            <li>Adresse :<span><?php echo (isset($_SESSION['validation']['client']->adresse)) ? $_SESSION['validation']['client']->adresse : '' ?></span></li>
-                            <li>Code Postal :<span><?php echo isset($_SESSION['validation']['client']->cp) ? $_SESSION['validation']['client']->cp : ''; ?></span></li>
-                            <li>Ville :<span><?php echo isset($_SESSION['validation']['client']->ville) ? $_SESSION['validation']['client']->ville : ''; ?></span></li>
+                            <li>Adresse :<span><?php echo isset($_SESSION['validation']['client']['adresse']) ? $_SESSION['validation']['client']['adresse'] : '' ?></span></li>
+                            <li>Code Postal :<span><?php echo isset($_SESSION['validation']['client']['codePostal']) ? $_SESSION['validation']['client']['codePostal'] : ''; ?></span></li>
+                            <li>Ville :<span><?php echo isset($_SESSION['validation']['client']['ville']) ? $_SESSION['validation']['client']['ville'] : ''; ?></span></li>
                         </ul>
                     </div>
                 </div>

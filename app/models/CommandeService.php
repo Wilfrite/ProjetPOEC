@@ -34,7 +34,7 @@ class CommandeService {
         }
     }
 
-    public function createOrder( $adresse_livraison ,$cp_livraison , $cp_livraison , $ville_livraison , $adresse_facturation , $cp_facturation ,$ville_facturation , $id_user, $array)
+    public function createOrder( $adresse_livraison ,$cp_livraison , $ville_livraison , $adresse_facturation , $cp_facturation ,$ville_facturation , $id_user, $array)
     {
         try {
             $sql = "INSERT INTO `commande`( `statut`, `date_commande`, `date_reception`, `adrersse_livraison`, `cp_livraison`, `ville_livraison`, `adrersse_facturation`, `cp_facturation`, `ville_facturation`, `id_utilisateur`) VALUES ( 'en préparation', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP +2, :adrersse_livraison, :cp_livraison, :ville_livraison, :adrersse_facturation, :cp_facturation, :ville_facturation, :id_utilisateur)";
