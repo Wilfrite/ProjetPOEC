@@ -118,11 +118,11 @@
 
                             <p>Adresse de Facturation</p>
                             <form>
-                                <input type="text" name="prenom" id="prenom" placeholder="Prenom" value="<?php echo isset ($viewProfil[0]) ? $viewProfil[0]->getprenom() : ''; ?>"disabled>
-                                <input type="text" name="nom" id="nom" placeholder="Nom" value="<?php echo isset($viewProfil[0]) ? $viewProfil[0]->getnom() :'' ?>"disabled>
-                                <input type="text" name="adresse" id="adresse" placeholder="Address" value="<?php echo isset($viewProfil[0]->adresse) ? $viewProfil[0]->adresse : '' ?>"disabled>
-                                <input type="text" name="codePostal" id="codePostal" placeholder="Code Postal" value="<?php echo isset( $viewProfil[0]->cp) ? $viewProfil[0]->cp : ''; ?>"disabled>
-                                <input type="text" name="ville" id="ville" placeholder="Ville" value="<?php echo isset($viewProfil[0]->ville) ? $viewProfil[0]->ville : ''; ?>"disabled>
+                                <input type="text" name="prenom" id="prenom" placeholder="Veuillez remplir votre profil" value="<?php echo isset ($viewProfil[0]) ? $viewProfil[0]->getprenom() : ''; ?>"disabled>
+                                <input type="text" name="nom" id="nom" placeholder="Veuillez remplir votre profil" value="<?php echo isset($viewProfil[0]) ? $viewProfil[0]->getnom() :'' ?>"disabled>
+                                <input type="text" name="adresse" id="adresse" placeholder="Veuillez remplir votre profil" value="<?php echo isset($viewProfil[0]->adresse) ? $viewProfil[0]->adresse : '' ?>"disabled>
+                                <input type="text" name="codePostal" id="codePostal" placeholder="Veuillez remplir votre profil" value="<?php echo isset( $viewProfil[0]->cp) ? $viewProfil[0]->cp : ''; ?>"disabled>
+                                <input type="text" name="ville" id="ville" placeholder="Veuillez remplir votre profil" value="<?php echo isset($viewProfil[0]->ville) ? $viewProfil[0]->ville : ''; ?>"disabled>
 
                             </form>
                             <!--                <a class="btn btn-primary" href="">Get Quotes</a>-->
