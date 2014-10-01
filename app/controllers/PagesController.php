@@ -476,6 +476,14 @@ class PagesController extends Controller {
                 header("Location:$url");
                 exit();
             }
+            elseif (!isset($viewProfil))
+            {
+
+                $url = $this->url('pages','profil');
+                header("Location:$url");
+                $this->setFlash("Information Incorect. Veuillez remplir votre profil (adresse de facturation manquante)","warning");
+                exit();
+            }
             else
             {
                 $this->setFlash("Information Incorect. L'adresse de livraison est incomplète","warning");
@@ -501,6 +509,7 @@ class PagesController extends Controller {
             $panier_courant = $this->articleService->findAllArticlesById(array_keys($_SESSION['panier']));
             $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
             $n_commande = $lastId;
+            $commande = $this->commandeService->selectOrder($n_commande,$_SESSION['id'] );
 //            unset ( $_SESSION['validation']['client']);
 //            unset ( $_SESSION['panier']);
 

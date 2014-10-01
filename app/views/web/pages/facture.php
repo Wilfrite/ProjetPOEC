@@ -4,6 +4,7 @@
         <div class="container">
             <h1>Commande validée</h1>
             <p><h2>Resumé de votre commande : (numéro de commande :  <?php echo isset ($n_commande) ? $n_commande : ''; ?> )</h2></p>
+            <p><h2>(Livraison prévue pour le <?php echo isset ($commande[0]) ? $commande[0]->getDateReception() : ''; ?> )</h2></p> <!--todo : récupérer le select -->
             <div class="table-responsive cart_info">
                 <table class="table table-condensed">
                     <thead>

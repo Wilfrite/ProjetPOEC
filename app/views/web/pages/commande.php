@@ -3,7 +3,7 @@
     <section id="cart_items">
         <div class="container">
             <h1>Commande n° <?php echo isset ($commande[0]) ? $commande[0]->getId() : ''; ?></h1>
-            <p><h2>(effectuée le <?php echo isset ($commande[0]) ? $commande[0]->getDateCommande() : ''; ?> : <?php echo isset ($commande[0]) ? $commande[0]->getStatut() : ''; ?>)</h2></p>
+            <p><h2>(effectuée le <?php echo isset ($commande[0]) ? $commande[0]->getDateCommande() : ''; ?> : <?php echo isset ($commande[0]) ? $commande[0]->getStatut() : ''; ?> pour le <?php echo isset ($commande[0]) ? $commande[0]->getDateReception() : ''; ?>)</h2></p>
             <div class="table-responsive cart_info">
                 <table class="table table-condensed">
                     <thead>
@@ -89,7 +89,7 @@
         </div>
         <div class="container text-center">
             <div class="content-404">
-                <h3><a href="<?php echo isset($_SESSION['email']) ? $this->url('pages','profil') : $this->url('pages','login') ;?>">Retourner au profil.</a></h2>
+                <h3><a href="<?php echo isset($_SESSION['email']) ? $this->url('pages','profil') : $this->url('pages','login') ;?>">Retourner au profil.</a></h3>
             </div>
         </div>
     </section>
