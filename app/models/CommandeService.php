@@ -36,7 +36,7 @@ class CommandeService {
     public function createOrder( $adresse_livraison ,$cp_livraison , $ville_livraison , $adresse_facturation , $cp_facturation ,$ville_facturation , $id_user, $array)
     {
         try {
-            $sql = "INSERT INTO `commande`( `statut`, `date_commande`, `date_reception`, `adrersse_livraison`, `cp_livraison`, `ville_livraison`, `adrersse_facturation`, `cp_facturation`, `ville_facturation`, `id_utilisateur`) VALUES ( 'en préparation', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP +2, :adrersse_livraison, :cp_livraison, :ville_livraison, :adrersse_facturation, :cp_facturation, :ville_facturation, :id_utilisateur)";
+            $sql = "INSERT INTO `commande`( `statut`, `date_commande`, `date_reception`, `adrersse_livraison`, `cp_livraison`, `ville_livraison`, `adrersse_facturation`, `cp_facturation`, `ville_facturation`, `id_utilisateur`) VALUES ( 'en préparation', CURRENT_TIMESTAMP, (SELECT INTERVAL 2 DAY + CURRENT_TIMESTAMP) , :adrersse_livraison, :cp_livraison, :ville_livraison, :adrersse_facturation, :cp_facturation, :ville_facturation, :id_utilisateur)";
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute([
 
@@ -63,7 +63,6 @@ class CommandeService {
             // Sélection des données
             $sql = "SELECT  `commande`.`id`,  `commande`.`statut`,  `commande`.`date_commande`,  `commande`.`date_reception`,  `commande`.`adrersse_livraison`,  `commande`.`cp_livraison`,  `commande`.`ville_livraison`,  `commande`.`adrersse_facturation`,  `commande`.`cp_facturation`,  `commande`.`ville_facturation`,  `commande`.`id_utilisateur`
             FROM `commande`
-            JOIN `article_commande` ON `commande`.`id` = `article_commande`.`id_commande`
             WHERE `commande`.`id_utilisateur` = :id_utilisateur AND `commande`.`id` = :id_commande";
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute([

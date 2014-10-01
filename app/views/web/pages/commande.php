@@ -2,8 +2,8 @@
 
     <section id="cart_items">
         <div class="container">
-            <h1>Commande validée</h1>
-            <p><h2>Resumé de votre commande : (numéro de commande :  <?php echo isset ($n_commande) ? $n_commande : ''; ?> )</h2></p>
+            <h1>Commande n° <?php echo isset ($commande[0]) ? $commande[0]->getId() : ''; ?></h1>
+            <p><h2>(effectuée le <?php echo isset ($commande[0]) ? $commande[0]->getDateCommande() : ''; ?> : <?php echo isset ($commande[0]) ? $commande[0]->getStatut() : ''; ?>)</h2></p>
             <div class="table-responsive cart_info">
                 <table class="table table-condensed">
                     <thead>
@@ -18,7 +18,7 @@
                     </thead>
                     <tbody>
                     <!--- foreach elements -->
-                    <?php  $total_panier = 0; foreach($panier_courant as $item_panier) : ?>
+                    <?php  $total_panier = 0; foreach($panier as $item_panier) : ?>
                         <tr>
                             <td class="cart_product">
                                 <a href="<?php echo $this->url('pages','article',$item_panier->getid());?>"><img class="cart_img" src="<?php echo $hrefImage ?><?php echo $item_panier->getimage() ;?>" alt=""></a>
@@ -31,16 +31,16 @@
                             </td>
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
-                                    <p><?php echo $_SESSION['panier'][$item_panier->getid()] ;?></p>
+                                    <p><?php echo $item_panier->quantite ;?></p>
                                 </div>
                             </td>
                             <td class="cart_total">
-                                <p class="cart_total_price"><?php  echo  $sous_total =  $item_panier->getprixTVA() *  $_SESSION['panier'][$item_panier->getid()];  ?>€</p>
+                                <p class="cart_total_price"><?php  echo  $sous_total =  $item_panier->getprixTVA() *  $item_panier->quantite;  ?>€</p>
                             </td>
                         </tr>
                         <!-- end foreach -->
                         <!-- cumul total-->
-                        <?php $total_panier += $item_panier->getprix() *  $_SESSION['panier'][$item_panier->getid()];
+                        <?php $total_panier += $item_panier->getprix() *  $item_panier->quantite;
                     endforeach; ?>
                     </tbody>
                 </table>
@@ -57,9 +57,9 @@
                             <li>Adresse de Facturation</li>
                             <li>Nom :<span><?php echo isset ($viewProfil[0]) ? $viewProfil[0]->getnom() : ''; ?></span></li>
                             <li>Prenom :<span><?php echo isset ($viewProfil[0]) ? $viewProfil[0]->getprenom() : ''; ?></span></li>
-                            <li>Adresse :<span><?php echo isset($viewProfil[0]->adresse) ? $viewProfil[0]->adresse : ''; ?></span></li>
-                            <li>Code Postal :<span><?php echo isset( $viewProfil[0]->cp) ? $viewProfil[0]->cp : ''; ?></span></li>
-                            <li>Ville :<span><?php echo isset($viewProfil[0]->ville) ? $viewProfil[0]->ville : ''; ?></span></li>
+                            <li>Adresse :<span><?php echo isset($commande[0]) ? $commande[0]->getAdrersseLivraison() : ''; ?></span></li>
+                            <li>Code Postal :<span><?php echo isset($commande[0]) ? $commande[0]->getCpLivraison() : ''; ?></span></li>
+                            <li>Ville :<span><?php echo isset($commande[0]) ? $commande[0]->getVilleLivraison() : '';?></span></li>
                         </ul>
                     </div>
                 </div>
@@ -67,11 +67,11 @@
                     <div class="total_area">
                         <ul>
                             <li>Adresse de Livraison</li>
-                            <li>Nom :<span><?php echo isset ($_SESSION['validation']['client']['nom']) ? $_SESSION['validation']['client']['nom'] : ''; ?></span></li>
-                            <li>Prenom :<span><?php echo isset ($_SESSION['validation']['client']['prenom']) ? $_SESSION['validation']['client']['prenom'] : ''; ?></span></li>
-                            <li>Adresse :<span><?php echo isset($_SESSION['validation']['client']['adresse']) ? $_SESSION['validation']['client']['adresse'] : ''; ?></span></li>
-                            <li>Code Postal :<span><?php echo isset($_SESSION['validation']['client']['codePostal']) ? $_SESSION['validation']['client']['codePostal'] : ''; ?></span></li>
-                            <li>Ville :<span><?php echo isset($_SESSION['validation']['client']['ville']) ? $_SESSION['validation']['client']['ville'] : ''; ?></span></li>
+                            <li>Nom :<span><?php echo isset ($viewProfil[0]) ? $viewProfil[0]->getnom() : ''; ?></span></li>
+                            <li>Prenom :<span><?php echo isset ($viewProfil[0]) ? $viewProfil[0]->getprenom() : ''; ?></span></li>
+                            <li>Adresse :<span><?php echo isset($commande[0]) ? $commande[0]->getAdrersseFacturation() : ''; ?></span></li>
+                            <li>Code Postal :<span><?php echo isset($commande[0]) ? $commande[0]->getCpFacturation() : ''; ?></span></li>
+                            <li>Ville :<span><?php echo isset($commande[0]) ? $commande[0]->getVilleFacturation() : '';?></span></li>
                         </ul>
                     </div>
                 </div>
@@ -89,12 +89,9 @@
         </div>
         <div class="container text-center">
             <div class="content-404">
-                <h2><a href="index.php">Retourner à l'accueil.</a></h2>
+                <h3><a href="<?php echo isset($_SESSION['email']) ? $this->url('pages','profil') : $this->url('pages','login') ;?>">Retourner au profil.</a></h2>
             </div>
         </div>
     </section>
 
-<?php
-            unset ( $_SESSION['validation']['client']);
-            unset ( $_SESSION['panier']);
-require_once ROOT.'/views/web/layouts/footer.php'; ?>
+<?php require_once ROOT.'/views/web/layouts/footer.php'; ?>

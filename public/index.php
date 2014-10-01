@@ -69,6 +69,9 @@ switch(isset($_GET['a'])? $_GET['a'] : 'index')
     case 'panier' :
         $pagesController->panier($params);
         break;
+    case 'commande' :
+        $pagesController->commande($params);
+        break;
     case 'validation_to_pay' :
         $pagesController->validation_to_pay($params);
         break;

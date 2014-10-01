@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: poec
+ * utilisateur: poec
  * Date: 29/09/2014
  * Time: 13:26
  */
@@ -11,44 +11,44 @@ class Commande {
     protected $statut;
     protected $date_commande;
     protected $date_reception;
-    protected $adresse_livraison;
+    protected $adrersse_livraison;
     protected $cp_livraison;
     protected $ville_livraison;
-    protected $adresse_facturation;
+    protected $adrersse_facturation;
     protected $cp_facturation;
     protected $ville_facturation;
-    protected $id_user;
+    protected $id_utilisateur;
 
     /**
      * @return mixed
      */
-    public function getAdresseFacturation()
+    public function getAdrersseFacturation()
     {
-        return $this->adresse_facturation;
+        return $this->adrersse_facturation;
     }
 
     /**
-     * @param mixed $adresse_facturation
+     * @param mixed $adrersse_facturation
      */
-    public function setAdresseFacturation($adresse_facturation)
+    public function setAdrersseFacturation($adrersse_facturation)
     {
-        $this->adresse_facturation = $adresse_facturation;
+        $this->adrersse_facturation = $adrersse_facturation;
     }
 
     /**
      * @return mixed
      */
-    public function getAdresseLivraison()
+    public function getAdrersseLivraison()
     {
-        return $this->adresse_livraison;
+        return $this->adrersse_livraison;
     }
 
     /**
-     * @param mixed $adresse_livraison
+     * @param mixed $adrersse_livraison
      */
-    public function setAdresseLivraison($adresse_livraison)
+    public function setAdrersseLivraison($adrersse_livraison)
     {
-        $this->adresse_livraison = $adresse_livraison;
+        $this->adrersse_livraison = $adrersse_livraison;
     }
 
     /**
@@ -134,17 +134,17 @@ class Commande {
     /**
      * @return mixed
      */
-    public function getIdUser()
+    public function getIdutilisateur()
     {
-        return $this->id_user;
+        return $this->id_utilisateur;
     }
 
     /**
-     * @param mixed $id_user
+     * @param mixed $id_utilisateur
      */
-    public function setIdUser($id_user)
+    public function setIdutilisateur($id_utilisateur)
     {
-        $this->id_user = $id_user;
+        $this->id_utilisateur = $id_utilisateur;
     }
 
     /**

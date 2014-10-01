@@ -16,6 +16,7 @@ class PagesController extends Controller {
     protected $utilisateurService;
     protected $profilService;
     protected $adresseService;
+    protected $commandeService;
 
     public function __construct(array $config,$dbh) {
         $this->config = $config;
@@ -542,6 +543,20 @@ class PagesController extends Controller {
             $this->facture($lastId);
 
         }
+
+    }
+    function commande($id_commande)
+    {
+        $tva =.2;
+        $href = $this->config['href'];
+        $hrefImage = $this->config['href_image'];
+        $viewProfil = $this->profilService->viewProfil($_SESSION['id']);
+        $commande = $this->commandeService->selectOrder($id_commande,$_SESSION['id'] );
+        $panier = $this->articleService->findAllArticlesByOrder($id_commande);
+
+        require ROOT.'/views/web/pages/commande.php';
+
+
 
     }
 }

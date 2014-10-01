@@ -152,6 +152,27 @@ class ArticleService {
         return (isset($result) ? $result : null);
     }
 
+    public function findAllArticlesByOrder($id_commande)
+    { // $id == tableau d'id
+        try {
+            // mapping du tableau
+
+            // Sélection des données
+            $sql = "SELECT `article`.`id`, `article`.`nom`, `article`.`image`, `article`.`description`, `article`.`etat`, `article`.`date_edition`, `article`.`editeur`, `article`.`auteur`, `article`.`seuil`,`article`.`quantite_stock`, `article`.`prix`, `article_commande`.`quantite`
+            FROM `article`
+            JOIN `article_commande` ON `article`.`id` = `article_commande`.`id`
+            WHERE  `article_commande`.`id_commande` = :id_commande";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->execute([
+                    ':id_commande' =>$id_commande,
+                    ]);
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
+            $stmt->closeCursor();
+        } catch (PDOException $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+        return (isset($result) ? $result : null);
+    }
 }
 
 
